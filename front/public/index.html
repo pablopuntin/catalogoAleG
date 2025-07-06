@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tienda Online</title>
+    <title>Catalogo Online</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -14,7 +14,7 @@
     <!--CSS -->
     <link rel="stylesheet" href="./asset/styles/styles.css">
 </head>
-<body>
+<body class="bg-dark">
     <!-- Navbar -->
      <header>
     <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
@@ -47,12 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#marroquineria">Marroquinería</a>
                     </li>
-                    <li class="nav-item ms-3">
-                        <!-- Theme Toggle Button -->
-                        <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
-                            <i class="bi bi-sun-fill" id="themeIcon"></i>
-                        </button>
-                    </li>
+                  
                 </ul>
             </div>
         </div>
@@ -66,8 +61,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-8 mx-auto text-center">
                     <h1 class="display-4 fw-bold mb-lg-3">Nuestro Catálogo</h1>
-                    <p class="lead mb-4 text-muted">Explora nuestra colección de calzas, buzos y marroquinería. Encuentra el estilo perfecto para ti.</p>
-                    <!-- <a href="#productos" class="btn btn-primary btn-lg custom-btn">Ver Productos</a> -->
+                    <p class="lead mb-3 ">Explora nuestra colección de calzas, buzos y marroquinería. Encuentra el estilo perfecto para ti.</p>
                      
                 </div>
             </div>
@@ -88,10 +82,9 @@
             />
           </div>
           <div class="card-body">
-            <!-- <h5 class="card-title">Título 1</h5>
-             <p class="card-text">
-              Descripción de la primera imagen. Puedes personalizar este contenido según tus necesidades.
-            </p> --> 
+            <h5 class="card-title">Calzas</h5>
+                            <p class="card-text">Descubre nuestra variedad de calzas cómodas y elegantes para todas las ocasiones.</p>
+                            <a href="#" class="btn btn-outline-primary custom-btn-outline">Ver Catálogo</a> 
           </div>
         </div>
       </div>
@@ -108,10 +101,9 @@
             />
           </div>
           <div class="card-body">
-            <!-- <h5 class="card-title">Título 2</h5>
-            <p class="card-text">
-              Descripción de la segunda imagen. El contenido se adapta perfectamente al diseño responsive.
-            </p> -->
+            <h5 class="card-title">Remeras</h5>
+                            <p class="card-text">Explora nuestra colección de remeras y musculosas modernos y cómodos para el día a día.</p>
+                            <a href="#" class="btn btn-outline-success custom-btn-outline">Ver Catálogo</a>
           </div>
         </div>
       </div>
@@ -127,12 +119,9 @@
               style="object-fit: cover;"
             />
           </div>
-          <!-- <div class="card-body">
-            <h5 class="card-title">Título 3</h5>
-            <p class="card-text">
-              Descripción de la tercera imagen. Las tarjetas mantienen la misma altura automáticamente.
-            </p>
-          </div> -->
+           <h5 class="card-title">Buzos</h5>
+                            <p class="card-text">Explora nuestra colección de buzos modernos y cómodos para el día a día.</p>
+                            <a href="#" class="btn btn-outline-success custom-btn-outline">Ver Catálogo</a>
         </div>
       </div>
 
@@ -147,12 +136,11 @@
               style="object-fit: cover;"
             />
           </div>
-          <!-- <div class="card-body">
-            <h5 class="card-title">Título 4</h5>
-            <p class="card-text">
-              Descripción de la cuarta imagen. Diseño completamente responsive y adaptable.
-            </p>
-          </div> -->
+         <div class="card-body">
+              <h5 class="card-title">Marroquinería</h5>
+                            <p class="card-text">Conoce nuestra línea de carteras, bolsos y accesorios de cuero de primera calidad.</p>
+                            <a href="#" class="btn btn-outline-warning custom-btn-outline">Ver Catálogo</a>
+          </div>
         </div>
       </div>
     </div>
@@ -162,57 +150,9 @@
 
 
     <!-- Productos Section -->
-    <section id="productos" class="py-5">
+    <section id="productos">
         <div class="container">
-            <h2 class="text-center mb-2">Nuestros Productos</h2>
-            <div class="row g-4">
-                <!-- Calzas -->
-                <div class="col-lg-3 col-md-6" id="calzas">
-                    <div class="card h-100 custom-card">
-                        <div class="card-body text-center">
-                            <i class="bi bi-person-standing display-1 text-primary mb-3"></i>
-                            <h5 class="card-title">Calzas</h5>
-                            <p class="card-text">Descubre nuestra variedad de calzas cómodas y elegantes para todas las ocasiones.</p>
-                            <a href="#" class="btn btn-outline-primary custom-btn-outline">Ver Catálogo</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Buzos -->
-                <div class="col-lg-3 col-md-6" id="buzos">
-                    <div class="card h-100 custom-card">
-                        <div class="card-body text-center">
-                            <i class="bi bi-person-arms-up display-1 text-success mb-3"></i>
-                            <h5 class="card-title">Buzos</h5>
-                            <p class="card-text">Explora nuestra colección de buzos modernos y cómodos para el día a día.</p>
-                            <a href="#" class="btn btn-outline-success custom-btn-outline">Ver Catálogo</a>
-                        </div>
-                    </div>
-                </div>
-
-                  <!-- Remeras -->
-                <div class="col-lg-3 col-md-6" id="buzos">
-                    <div class="card h-100 custom-card">
-                        <div class="card-body text-center">
-                            <i class="bi bi-person-arms-up display-1 text-success mb-3"></i>
-                            <h5 class="card-title">Remeras</h5>
-                            <p class="card-text">Explora nuestra colección de remeras y musculosas modernos y cómodos para el día a día.</p>
-                            <a href="#" class="btn btn-outline-success custom-btn-outline">Ver Catálogo</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Marroquinería -->
-                <div class="col-lg-3 col-md-6" id="marroquineria">
-                    <div class="card h-100 custom-card">
-                        <div class="card-body text-center">
-                            <i class="bi bi-handbag display-1 text-warning mb-3"></i>
-                            <h5 class="card-title">Marroquinería</h5>
-                            <p class="card-text">Conoce nuestra línea de carteras, bolsos y accesorios de cuero de primera calidad.</p>
-                            <a href="#" class="btn btn-outline-warning custom-btn-outline">Ver Catálogo</a>
-                        </div>
-                    </div>
-                </div>
+            
             </div>
         </div>
     </section>
