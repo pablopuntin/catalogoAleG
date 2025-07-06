@@ -6,8 +6,8 @@
 /* CSS Custom Properties for Theme */
 :root {
   /* Light Theme Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
+  --bg-primary: #efeeee;
+  --bg-secondary: #e4ecf4;
   --bg-tertiary: #e9ecef;
   --text-primary: #212529;
   --text-secondary: #6c757d;
@@ -28,18 +28,20 @@
   --bg-primary: #121212;
   --bg-secondary: #1e1e1e;
   --bg-tertiary: #2d2d2d;
-  --text-primary: #ffffff;
+  --text-primary: #928e8e;
   --text-secondary: #b3b3b3;
   --text-muted: #888888;
   --border-color: #404040;
   --shadow: rgba(0, 0, 0, 0.3);
-  --navbar-bg: #1e1e1e;
+  --navbar-bg: #3c3b3b;
   --card-bg: #2d2d2d;
   --footer-bg: #0d0d0d;
   --footer-text: #ffffff;
 }
 
-/* Base Styles */
+
+
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -177,3 +179,13 @@ html {
 * {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+ /*css para la pagina*/
+
+ .nav-link{
+  font-size: 1.4em;
+ }
+
+ .dev{
+  font-size: 1.5em;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+ }

@@ -91,3 +91,43 @@ window.addEventListener("scroll", () => {
     navbar.style.backdropFilter = "none"
   }
 })
+
+
+
+
+//Array con productos ficticios de prueba
+// Si lo vas a dejar en index.js por ahora:
+export const productos = [
+  {
+    id: 1,
+    nombre: "Calza deportiva negra",
+    descripcion: "Confeccionada en tela flexible y cómoda",
+    precio: 8500,
+    imagen: "https://acdn-us.mitiendanube.com/stores/004/278/967/products/227-cbe8a3d5b77c6f913417480307418100-1024-1024.png",
+    seccion: "calzas",
+    disponible: true,
+  },
+  {
+    id: 2,
+    nombre: "Buzo oversize beige",
+    descripcion: "Ideal para otoño, de algodón suave",
+    precio: 12500,
+    imagen: "https://i.pinimg.com/236x/62/f2/3f/62f23fef8a128c1bca408b08277b5195.jpg",
+    seccion: "buzos",
+    disponible: true,
+  },
+  {
+    id: 3,
+    nombre: "Cartera cuero sintético",
+    descripcion: "Amplia, con cierre y manijas reforzadas",
+    precio: 9800,
+    imagen: "https://mussleathers.com/wp-content/uploads/2021/06/foto1-1536x1024.jpg",
+    seccion: "marroquineria",
+    disponible: false,
+  },
+];
+
+
+
+
+module.exports = "./index.js";

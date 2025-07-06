@@ -16,6 +16,7 @@
 </head>
 <body>
     <!-- Navbar -->
+     <header>
     <nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
         <div class="container">
             <!-- Logo a la izquierda -->
@@ -56,27 +57,117 @@
             </div>
         </div>
     </nav>
+    </header>
 
+    <main>
     <!-- Hero Section -->
     <section id="home" class="hero-section py-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold mb-4">Nuestro Catálogo</h1>
+                    <h1 class="display-4 fw-bold mb-lg-3">Nuestro Catálogo</h1>
                     <p class="lead mb-4 text-muted">Explora nuestra colección de calzas, buzos y marroquinería. Encuentra el estilo perfecto para ti.</p>
-                    <a href="#productos" class="btn btn-primary btn-lg custom-btn">Ver Productos</a>
+                    <!-- <a href="#productos" class="btn btn-primary btn-lg custom-btn">Ver Productos</a> -->
+                     
                 </div>
             </div>
         </div>
+        <!-- Sección de Galería de Imágenes -->
+<section class="py-5 mb-1">
+  <div class="container">
+    <div class="row g-4">
+      <!-- Tarjeta 1 -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-img-top overflow-hidden" style="height: 55vh;">
+            <img
+              src="https://acdn-us.mitiendanube.com/stores/004/278/967/products/227-cbe8a3d5b77c6f913417480307418100-1024-1024.png"
+              class="img-fluid w-100 h-100"
+              alt="Imagen 1"
+              style="object-fit: cover;"
+            />
+          </div>
+          <div class="card-body">
+            <!-- <h5 class="card-title">Título 1</h5>
+             <p class="card-text">
+              Descripción de la primera imagen. Puedes personalizar este contenido según tus necesidades.
+            </p> --> 
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 2 -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-img-top overflow-hidden" style="height: 55vh;">
+            <img
+              src="https://i.pinimg.com/236x/22/88/3d/22883d6f0c19cae055bf3bc75cb368c1.jpg"
+              class="img-fluid w-100 h-100"
+              alt="Imagen 2"
+              style="object-fit: cover;"
+            />
+          </div>
+          <div class="card-body">
+            <!-- <h5 class="card-title">Título 2</h5>
+            <p class="card-text">
+              Descripción de la segunda imagen. El contenido se adapta perfectamente al diseño responsive.
+            </p> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tarjeta 3 -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-img-top overflow-hidden" style="height: 55vh;">
+            <img
+              src="https://i.pinimg.com/236x/62/f2/3f/62f23fef8a128c1bca408b08277b5195.jpg"
+              class="img-fluid w-100 h-100"
+              alt="Imagen 3"
+              style="object-fit: cover;"
+            />
+          </div>
+          <!-- <div class="card-body">
+            <h5 class="card-title">Título 3</h5>
+            <p class="card-text">
+              Descripción de la tercera imagen. Las tarjetas mantienen la misma altura automáticamente.
+            </p>
+          </div> -->
+        </div>
+      </div>
+
+      <!-- Tarjeta 4 -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-img-top overflow-hidden" style="height: 55vh;">
+            <img
+              src="https://mussleathers.com/wp-content/uploads/2021/06/foto1-1536x1024.jpg"
+              class="img-fluid w-100 h-100"
+              alt="Imagen 4"
+              style="object-fit: cover;"
+            />
+          </div>
+          <!-- <div class="card-body">
+            <h5 class="card-title">Título 4</h5>
+            <p class="card-text">
+              Descripción de la cuarta imagen. Diseño completamente responsive y adaptable.
+            </p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
     </section>
+
 
     <!-- Productos Section -->
     <section id="productos" class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">Nuestros Productos</h2>
+            <h2 class="text-center mb-2">Nuestros Productos</h2>
             <div class="row g-4">
                 <!-- Calzas -->
-                <div class="col-md-4" id="calzas">
+                <div class="col-lg-3 col-md-6" id="calzas">
                     <div class="card h-100 custom-card">
                         <div class="card-body text-center">
                             <i class="bi bi-person-standing display-1 text-primary mb-3"></i>
@@ -88,7 +179,7 @@
                 </div>
                 
                 <!-- Buzos -->
-                <div class="col-md-4" id="buzos">
+                <div class="col-lg-3 col-md-6" id="buzos">
                     <div class="card h-100 custom-card">
                         <div class="card-body text-center">
                             <i class="bi bi-person-arms-up display-1 text-success mb-3"></i>
@@ -98,9 +189,21 @@
                         </div>
                     </div>
                 </div>
+
+                  <!-- Remeras -->
+                <div class="col-lg-3 col-md-6" id="buzos">
+                    <div class="card h-100 custom-card">
+                        <div class="card-body text-center">
+                            <i class="bi bi-person-arms-up display-1 text-success mb-3"></i>
+                            <h5 class="card-title">Remeras</h5>
+                            <p class="card-text">Explora nuestra colección de remeras y musculosas modernos y cómodos para el día a día.</p>
+                            <a href="#" class="btn btn-outline-success custom-btn-outline">Ver Catálogo</a>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Marroquinería -->
-                <div class="col-md-4" id="marroquineria">
+                <div class="col-lg-3 col-md-6" id="marroquineria">
                     <div class="card h-100 custom-card">
                         <div class="card-body text-center">
                             <i class="bi bi-handbag display-1 text-warning mb-3"></i>
@@ -113,7 +216,7 @@
             </div>
         </div>
     </section>
-
+    </main>
     <!-- Footer -->
     <footer class="custom-footer py-5 mt-5">
         <div class="container">
@@ -161,8 +264,8 @@
                     <p class="mb-0">&copy; 2025 Mi Tienda. Todos los derechos reservados.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <p class="mb-0">
-                        <small>Página creada por <strong>Pablo Puntin</strong></small>
+                    <p class="mb-0 dev">
+                       Página creada por <strong>Pablo Puntin</strong>
                     </p>
                 </div>
             </div>
@@ -172,6 +275,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script src="../scr/index.js"></script>
+    <script type="module" src="../scr/index.js"></script>
 </body>
 </html>
