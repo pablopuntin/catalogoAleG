@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin</title>
+  <link rel="stylesheet" href="../asset/estilos/dashboard.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Crear nuevo producto</h1>
+    <form id="form-producto">
+      <label>
+        Nombre:
+        <input type="text" name="nombre" required />
+      </label>
+
+      <label>
+        Descripción corta:
+        <input type="text" name="descripcion" maxlength="100" required />
+      </label>
+
+      <label>
+        Precio:
+        <input type="number" name="precio" step="0.01" required />
+      </label>
+
+      <label>
+        URL de imagen:
+        <input type="url" name="imagen" required />
+      </label>
+
+      <label>
+        Categoría:
+        <select name="seccion" required>
+          <option value="">Seleccionar</option>
+          <option value="hombre">Hombre</option>
+          <option value="mujer">Mujer</option>
+          <option value="accesorios">Accesorios</option>
+        </select>
+      </label>
+
+      <label>
+        Disponible:
+        <input type="checkbox" name="disponible" checked />
+      </label>
+
+      <button type="submit">Guardar producto</button>
+    </form>
+  </main>
+
+  <script src="../scr/admin.js" type="module"></script>
+</body>
+</html>
