@@ -19,3 +19,8 @@ footer{
   font-size: 1.5em;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
  }
+
+ .card-text{
+  color: black;
+  font-size: 1.5em;
+ }
