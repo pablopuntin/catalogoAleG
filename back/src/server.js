@@ -1,15 +1,24 @@
-const server = require('./index');
-require('dotenv').config();
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const server  = express();
+const Producto = require('./models/Producto');
 
-const conectarDB = require('./config/db');
-conectarDB();
-const PORT = process.env.PORT || 3001;
+
+//Midleware
+server.use(cors());
+server.use(morgan("dev"));
+server.use(express.json( ));
 
 
-server.listen(PORT, () => {
-
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-}).on('error', (err) => {
-  console.error('Error al iniciar el servidor:', err);
+//rutas
+server.get("/productos", async (req, res) => {
+    try {
+        const productos = await Producto.find();
+        res.json(productos);
+    }catch(error){
+        res.status(500).json({ error: "error al obtener el producto" });
+    }
 });
-console.log('Proceso sigue activo...');
+
+module.exports = server;
