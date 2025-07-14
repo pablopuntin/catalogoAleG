@@ -12,6 +12,6 @@ server.listen(PORT, (req, res) => {
 }).on('error', (err) => {
   console.error('Error al iniciar el servidor:', err);
 });
-console.log('Proceso sigue activo...');
+
 
 
