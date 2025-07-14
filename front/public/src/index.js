@@ -7,13 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnAdmin = document.getElementById("btn-admin");
 
   // ✅ MOSTRAR PRODUCTOS AL CARGAR LA PÁGINA
-  fetch("/productos")
-    .then(res => res.json())
-    .then(data => renderProd(data))
-    .catch(err => {
-      console.error("Error al cargar productos:", err);
-    });
- 
+  const apiUrl = window.env.API_URL;
+
+// Ejemplo:
+fetch(`${apiUrl}/producto`)
+  .then(res => res.json())
+  .then(data => console.log(data));
+       // Acá podrías renderizar los productos en el DOM
+  })
+  .catch(err => {
+    console.error("Error al obtener los productos:", err);
+  });
 
   // ✅ LÓGICA PARA EL BOTÓN ADMIN
   btnAdmin.addEventListener("click", async () => {
