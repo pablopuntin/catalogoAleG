@@ -5,24 +5,19 @@ const server  = express();
 const Producto = require('./models/Producto');
 const authRouter = require("./routes/authRouter");
 const productosRouter = require("./routes/productoRouter");
+const path = require("path");
 
 //Midleware
 server.use(cors());
 server.use(morgan("dev"));
 server.use(express.json( ));
 
+// Middleware para servir archivos estáticos del frontend
+server.use(express.static(path.join(__dirname, "../../front/public")));
+
 
 //rutas
 server.use("/productos", productosRouter);
-
-server.get("/productos", async (req, res) => {
-    try {
-        const productos = await Producto.find();
-        res.json(productos);
-    }catch(error){
-        res.status(500).json({ error: "error al obtener el producto" });
-    }
-});
 
 server.use("/login", authRouter);
 
