@@ -34,7 +34,7 @@ fetch(`${apiUrl}/producto`)
       alert("Usuario o contraseña incorrectos");
     }
   });
-});
+;
 
 
 
