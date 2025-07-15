@@ -1,7 +1,8 @@
 import renderProd from "./renderProductos.js";
 import { loginAdmin, } from "./auth.js";
 
-const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
+
+
 
 const btnAdmin = document.getElementById("btn-admin");
 

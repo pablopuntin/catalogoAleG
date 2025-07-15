@@ -1,6 +1,6 @@
 // src/admin.js
 import { isAdminLogged, logoutAdmin } from "./auth.js";
-const apiUrl = (window.env && window.env.API_URL) || "http://https://catalogo-ale-g.vercel.app/producto/";
+const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!isAdminLogged()) {
@@ -28,22 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const idProducto = params.get("id");
 
   if (idProducto) {
-    fetch(`/producto/${idProducto}`)
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("nombre").value = data.nombre;
-        document.getElementById("descripcion").value = data.descripcion;
-        document.getElementById("precio").value = data.precio;
-        document.getElementById("seccion").value = data.seccion;
-        document.getElementById("stock").value = data.stock;
-        document.getElementById("disponible").value = data.disponible.join(", ");
-        tituloForm.textContent = "Editar Producto";
-      })
-      .catch(error => {
-        console.error("Error al obtener el producto:", error);
-        alert("Error al cargar el producto");
-      });
-  }
+  fetch(`${apiBase}/producto/${idProducto}`)  // ✅ AHORA USÁS apiBase CORRECTAMENTE
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("nombre").value = data.nombre;
+      document.getElementById("descripcion").value = data.descripcion;
+      document.getElementById("precio").value = data.precio;
+      document.getElementById("seccion").value = data.seccion;
+      document.getElementById("stock").value = data.stock;
+      document.getElementById("disponible").value = data.disponible.join(", ");
+      tituloForm.textContent = "Editar Producto";
+    })
+    .catch(error => {
+      console.error("Error al obtener el producto:", error);
+      alert("Error al cargar el producto");
+    });
+}
+
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -51,16 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const formData = new FormData(form);
 
     const url = idProducto
-      ? `/producto/${idProducto}`
-      : "/producto";
+  ? `${apiBase}/producto/${idProducto}`  // ✅ CORRECTO
+  : `${apiBase}/producto`;              // ✅ CORRECTO
 
-    const metodo = idProducto ? "PUT" : "POST";
+const metodo = idProducto ? "PUT" : "POST";
 
-    try {
-      const res = await fetch(apiUrl, {
-        method: metodo,
-        body: formData,
-      });
+const res = await fetch(url, {
+  method: metodo,
+  body: formData,
+});
+
 
       const data = await res.json();
 

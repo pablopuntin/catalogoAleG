@@ -1,7 +1,7 @@
 
 
 //VERSION ADAPTADA PARA LA VISTA ADMIN, AYUDA CHATGPT
-const apiUrl = (window.env && window.env.API_URL) || "https://catalogo-ale-g.vercel.app/producto/";
+const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
 
 const contenedor = document.getElementById("productos");
@@ -49,7 +49,7 @@ function renderProd(data) {
         if (!confirmar) return;
 
         try {
-          const res = await fetch(`${apiUrl}${id}`, {
+          const res = await fetch(`${apiBase}/productos/${id}`, {
             method: "DELETE",
           });
           const data = await res.json();
