@@ -64,14 +64,13 @@ const res = await fetch(url, {
 
 
       const data = await res.json();
-
-      if (res.ok) {
+         if (res.ok) {
         alert(`Producto ${idProducto ? "actualizado" : "creado"} correctamente`);
         if (!idProducto) form.reset();
       } else {
         alert("Error al guardar: " + (data.mensaje || "Error desconocido"));
       }
-    } catch (error) {
+     catch (error) {
       console.error("Error en el fetch:", error);
       alert("Error de conexión");
     }
