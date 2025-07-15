@@ -7,7 +7,7 @@ const btnAdmin = document.getElementById("btn-admin");
 document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ MOSTRAR PRODUCTOS AL CARGAR LA PÁGINA
-  const apiUrl = (window.env && window.env.API_URL) || "http://https://catalogo-ale-g.vercel.app//producto/";
+  const apiUrl = (window.env && window.env.API_URL) || "https://catalogo-ale-g.vercel.app/producto/";
 
   try {
     fetch(apiUrl)
