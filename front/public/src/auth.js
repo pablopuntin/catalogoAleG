@@ -1,4 +1,6 @@
 // src/auth.js
+const apiUrl = (window.env && window.env.API_URL) || "http://localhost:3000/productos/";
+
 
 export function loginAdmin(user, password) {
   return fetch("/login", {

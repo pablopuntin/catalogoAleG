@@ -1,6 +1,6 @@
 // src/admin.js
 import { isAdminLogged, logoutAdmin } from "./auth.js";
-const apiUrl = (window.env && window.env.API_URL) || "http://localhost:3000/productos/";
+const apiUrl = (window.env && window.env.API_URL) || "http://https://catalogo-ale-g.vercel.app/producto/";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!isAdminLogged()) {
