@@ -1,7 +1,8 @@
 
 
 //VERSION ADAPTADA PARA LA VISTA ADMIN, AYUDA CHATGPT
-const apiUrl = window.env.API_URL;
+const apiUrl = (window.env && window.env.API_URL) || "https://catalogo-ale-g.vercel.app";
+
 
 const contenedor = document.getElementById("productos");
 

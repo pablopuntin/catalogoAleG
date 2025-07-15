@@ -3,21 +3,24 @@ console.log("imdex.js cargado");
 import renderProd from "./renderProductos.js";
 import { loginAdmin, } from "./auth.js";
 
+const btnAdmin = document.getElementById("btn-admin");
 document.addEventListener("DOMContentLoaded", () => {
-  const btnAdmin = document.getElementById("btn-admin");
 
   // ✅ MOSTRAR PRODUCTOS AL CARGAR LA PÁGINA
-  const apiUrl = window.env.API_URL;
+  const apiUrl = (window.env && window.env.API_URL) || "http://localhost:3000/productos/";
 
-// Ejemplo:
-fetch(`${apiUrl}/producto`)
-  .then(res => res.json())
-  .then(data => console.log(data));
-       // Acá podrías renderizar los productos en el DOM
-  })
-  .catch(err => {
-    console.error("Error al obtener los productos:", err);
-  });
+  try {
+    fetch(apiUrl)
+      .then(res => {
+        if (!res.ok) throw new Error("Respuesta no OK del servidor");
+        return res.json();
+      })
+      .then(data => renderProd(data))
+      .catch(err => console.error("Error al obtener productos:", err));
+  } catch (e) {
+    console.error("Error general en index.js:", e);
+  }
+});
 
   // ✅ LÓGICA PARA EL BOTÓN ADMIN
   btnAdmin.addEventListener("click", async () => {
