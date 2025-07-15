@@ -7,10 +7,10 @@ const btnAdmin = document.getElementById("btn-admin");
 document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ MOSTRAR PRODUCTOS AL CARGAR LA PÁGINA
-  const apiUrl = (window.env && window.env.API_URL) || "https://catalogo-ale-g.vercel.app/productos/";
+  const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
   try {
-    fetch(apiUrl)
+    fetch(`${apiBase}/productos`)
       .then(res => {
         if (!res.ok) throw new Error("Respuesta no OK del servidor");
         return res.json();
