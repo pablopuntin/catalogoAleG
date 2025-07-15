@@ -1,4 +1,4 @@
 window.env = {
- API_URL: "https://catalogo-ale-g.vercel.app"
+  API_URL: "https://catalogo-aleg-back.onrender.com"
 };
 
