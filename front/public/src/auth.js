@@ -3,7 +3,8 @@ const apiUrl = (window.env && window.env.API_URL) || "http://localhost:3000/prod
 
 
 export function loginAdmin(user, password) {
-  return fetch("/login", {
+  return fetch(`${apiUrl.replace("/productos/", "")}/login`, 
+  {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ user, password }),
