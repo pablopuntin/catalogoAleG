@@ -1,14 +1,13 @@
-console.log("imdex.js cargado");
-
 import renderProd from "./renderProductos.js";
 import { loginAdmin, } from "./auth.js";
 
+const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
+
 const btnAdmin = document.getElementById("btn-admin");
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  // ✅ MOSTRAR PRODUCTOS AL CARGAR LA PÁGINA
-  const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
-
+ 
   try {
     fetch(`${apiBase}/productos`)
       .then(res => {
@@ -32,11 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const exito = await loginAdmin(user, password);
     if (exito) {
-      window.location.href = "formulario.html";
-    } else {
-      alert("Usuario o contraseña incorrectos");
-    }
-  });
+      console.log("Login exitoso, redirigiendo...");
+    window.location.href = "formulario.html";
+  } else {
+    console.log("Login fallido.");
+    alert("Usuario o contraseña incorrectos");
+  }
+});
 
 
 
