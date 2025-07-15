@@ -47,32 +47,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const formData = new FormData(form);
+  const formData = new FormData(form);
+  const url = idProducto
+    ? `${apiBase}/producto/${idProducto}`
+    : `${apiBase}/producto`;
 
-    const url = idProducto
-  ? `${apiBase}/producto/${idProducto}`  // ✅ CORRECTO
-  : `${apiBase}/producto`;              // ✅ CORRECTO
+  const metodo = idProducto ? "PUT" : "POST";
 
-const metodo = idProducto ? "PUT" : "POST";
+  try {
+    const res = await fetch(url, {
+      method: metodo,
+      body: formData,
+    });
 
-const res = await fetch(url, {
-  method: metodo,
-  body: formData,
-});
+    const data = await res.json();
 
-
-      const data = await res.json();
-         if (res.ok) {
-        alert(`Producto ${idProducto ? "actualizado" : "creado"} correctamente`);
-        if (!idProducto) form.reset();
-      } else {
-        alert("Error al guardar: " + (data.mensaje || "Error desconocido"));
-      }
-     catch (error) {
-      console.error("Error en el fetch:", error);
-      alert("Error de conexión");
+    if (res.ok) {
+      alert(`Producto ${idProducto ? "actualizado" : "creado"} correctamente`);
+      if (!idProducto) form.reset();
+    } else {
+      alert("Error al guardar: " + (data.mensaje || "Error desconocido"));
     }
-  })
+
+  } catch (error) {
+    console.error("Error en el fetch:", error);
+    alert("Error de conexión");
+  }
 });
+});
+
+
