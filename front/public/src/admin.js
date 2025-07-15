@@ -1,6 +1,6 @@
 // src/admin.js
 import { isAdminLogged, logoutAdmin } from "./auth.js";
-
+const apiUrl = (window.env && window.env.API_URL) || "http://localhost:3000/productos/";
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!isAdminLogged()) {
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const metodo = idProducto ? "PUT" : "POST";
 
     try {
-      const res = await fetch(url, {
+      const res = await fetch(apiUrl, {
         method: metodo,
         body: formData,
       });

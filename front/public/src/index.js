@@ -37,21 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Usuario o contraseña incorrectos");
     }
   });
-;
 
 
 
-  btnAdmin.addEventListener("click", async () => {
-    const user = prompt("Ingrese usuario administrador:");
-    if (!user) return;
-
-    const password = prompt("Ingrese contraseña:");
-    if (!password) return;
-
-    const exito = await loginAdmin(user, password);
-    if (exito) {
-      window.location.href = "formulario.html";
-    } else {
-      alert("Usuario o contraseña incorrectos");
-    }
-  });
