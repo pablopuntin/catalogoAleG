@@ -11,9 +11,9 @@ function renderProd(data) {
 
   data.forEach(producto => {
     // Construir URL de imagen
-    const urlImagen = producto.poster
-      ? `${apiBase}${producto.poster.startsWith('/') ? '' : '/'}${producto.poster}`
-      : './asset/img/default.jpg';
+  const urlImagen = producto.poster
+  ? producto.poster
+  : './img/default.jpg';
 
     // Botones solo para admin
     const botonesAdmin = esAdmin ? `

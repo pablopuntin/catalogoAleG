@@ -15,26 +15,27 @@ exports.obtenerProductos = async (req, res) => {
 };
 
 
-
-exports.crearProducto = async (req, res) => {
+const crearProducto = async (req, res) => {
   try {
-  const { nombre, descripcion, precio, seccion, disponible, stock } = req.body;
- const poster = req.file ? `/uploads/${req.file.filename}` : null;
+    const { titulo, descripcion, disponible, seccion } = req.body;
+    const imagenUrl = req.file.path; // ✅ URL pública de Cloudinary
 
-  const nuevoProducto = new Producto({ nombre, 
-    descripcion, 
-    precio, 
-    seccion, 
-    disponible: (disponible || '').split(',').map(t => t.trim()),
-    stock, 
-    poster });
-  await nuevoProducto.save();
-  res.status(201).json(nuevoProducto);
-} catch (error){
-console.error("Error al crear el producto", error.message);
-res.status(500).json({mensaje: "error al crear el producto", error: error.message});
-}
+    const nuevoProducto = new Producto({
+      titulo,
+      descripcion,
+      disponible: disponible.split(',').map(t => t.trim()),
+      seccion,
+      imagen: imagenUrl, // Guardás la URL, no el archivo
+    });
+
+    await nuevoProducto.save();
+    res.status(201).json(nuevoProducto);
+  } catch (error) {
+    console.error("Error al crear producto:", error);
+    res.status(500).json({ error: "Error al crear producto" });
+  }
 };
+
 
 
 

@@ -1,18 +1,18 @@
 const multer = require('multer');
-const path = require('path');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const { cloudinary } = require('../utils/cloudinary');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../../uploads')); // carpeta uploads en back
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'catalogo_aleg', // Carpeta en Cloudinary
+    allowed_formats: ['jpg', 'jpeg', 'png'],
+    public_id: (req, file) => {
+      const nombre = file.originalname.split('.')[0];
+      return `${nombre}_${Date.now()}`; // ejemplo: "remera_123456789"
+    }
   },
-  filename: function (req, file, cb) {
-    const ext = path.extname(file.originalname);
-    const baseName = req.body.nombre?.replace(/\s+/g, '_').toLowerCase() || 'imagen';
-    const uniqueSuffix = Date.now();
-    cb(null, `${baseName}_${uniqueSuffix}${ext}`);
-  }
 });
-
 
 const upload = multer({ storage });
 
