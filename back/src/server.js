@@ -4,7 +4,7 @@ const cors = require("cors");
 const server  = express();
 const Producto = require('./models/Producto');
 const authRouter = require("./routes/authRouter");
-const productosRouter = require("./routes/productoRouter");
+const productoRouter = require("./routes/productoRouter");
 const path = require("path");
 
 //Midleware
@@ -17,7 +17,7 @@ server.use(express.static(path.join(__dirname, "../../front/public")));
 
 
 //rutas
-server.use("/productos", productosRouter);
+server.use("/productos", productoRouter);
 
 server.use("/login", authRouter);
 

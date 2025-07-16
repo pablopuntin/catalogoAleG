@@ -28,7 +28,7 @@ exports.crearProducto = async (req, res) => {
   await nuevoProducto.save();
   res.status(201).json(nuevoProducto);
 } catch (error){
-console.error("Error al crear el producto", message.error);
+console.error("Error al crear el producto", error.message);
 res.status(500).json({mensaje: "error al crear el producto", error: error.message});
 }
 };
@@ -58,8 +58,14 @@ exports.actualizarProducto = async (req, res) => {
       const nuevoNombreFinal = producto.poster || imagenNueva;
       const rutaFinal = path.join(__dirname, `../../front/public/img/${nuevoNombreFinal}`);
 
-      fs.renameSync(rutaImagenNueva, rutaFinal); // mover con nombre final
-      producto.poster = nuevoNombreFinal;
+      try {
+  fs.renameSync(rutaImagenNueva, rutaFinal);
+  producto.poster = nuevoNombreFinal;
+} catch (err) {
+  console.error("Error al mover imagen:", err.message);
+  return res.status(500).json({ mensaje: "Error al guardar imagen", error: err.message });
+}
+
     }
 
     // ✅ Actualizar solo los campos enviados
@@ -104,3 +110,16 @@ exports.eliminarProducto = async (req, res) => {
 }
 
 };
+
+exports.obtenerProductoPorId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const producto = await Producto.findById(id);
+    if (!producto) return res.status(404).json({ mensaje: "Producto no encontrado" });
+    res.json(producto);
+  } catch (error) {
+    console.error("Error al obtener producto por ID:", error.message);
+    res.status(500).json({ mensaje: "Error del servidor", error: error.message });
+  }
+};
+

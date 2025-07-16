@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const metodo = idProducto ? "PUT" : "POST";
 
   try {
-    const res = await fetch(url, {
+    const res = await fetch(apiBase, {
       method: metodo,
       body: formData,
     });
