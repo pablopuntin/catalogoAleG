@@ -30,3 +30,13 @@ export async function loginAdmin(user, password) {
     return false;
   }
 }
+
+
+
+export function isAdminLogged() {
+  return localStorage.getItem("adminAutenticado") === "true";
+}
+
+export function logoutAdmin() {
+  localStorage.removeItem("adminAutenticado");
+}
