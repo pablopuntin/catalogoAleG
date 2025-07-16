@@ -12,8 +12,8 @@ server.use(cors());
 server.use(morgan("dev"));
 server.use(express.json( ));
 
-// Middleware para servir archivos estáticos del frontend
-server.use(express.static(path.join(__dirname, "../../front/public")));
+// Middleware para servir archivos estáticos del backend
+server.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 //rutas

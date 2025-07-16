@@ -24,7 +24,7 @@ function renderProd(data) {
       <div class="col-xl-4 col-md-6 col-sm-10 mb-4">
         <div class="card h-100">
           <h5 class="card-title text-center">${producto.nombre}</h5>
-          <img src="./asset/img/${producto.poster}" alt="${producto.nombre}" class="card-img-top poster-img">
+         <img src="${producto.poster ? `${apiBase}${producto.poster}` : './asset/img/default.jpg'}" alt="${producto.nombre}" class="card-img-top poster-img">
           <div class="card-body">
             <p class="card-text">
               <strong>Descripción:</strong> ${producto.descripcion}<br>

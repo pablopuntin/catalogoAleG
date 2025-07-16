@@ -3,7 +3,7 @@ const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '../../../front/public/asset/img')); // ajustá la ruta si es necesario
+    cb(null, path.join(__dirname, '../../uploads')); // carpeta uploads en back
   },
   filename: function (req, file, cb) {
     const ext = path.extname(file.originalname);
@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
     cb(null, `${baseName}_${uniqueSuffix}${ext}`);
   }
 });
+
 
 const upload = multer({ storage });
 

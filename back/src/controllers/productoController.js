@@ -2,6 +2,9 @@ const Producto = require("../models/Producto");
 const path = require("path");
 const fs = require("fs");
 
+
+
+
 exports.obtenerProductos = async (req, res) => {
  try { const productos = await Producto.find();
   res.json(productos);
@@ -16,13 +19,13 @@ exports.obtenerProductos = async (req, res) => {
 exports.crearProducto = async (req, res) => {
   try {
   const { nombre, descripcion, precio, seccion, disponible, stock } = req.body;
-  const poster = req.file?.filename || null;
+ const poster = req.file ? `/uploads/${req.file.filename}` : null;
 
   const nuevoProducto = new Producto({ nombre, 
     descripcion, 
     precio, 
     seccion, 
-    disponible: disponible.split(',').map(t => t.trim()), 
+    disponible: (disponible || '').split(',').map(t => t.trim()),
     stock, 
     poster });
   await nuevoProducto.save();
