@@ -9,7 +9,10 @@ const authRouter = require("./routes/authRouter");
 const productoRouter = require("./routes/productoRouter");
 
 //Midleware
-server.use(cors());
+server.use(cors({
+  origin: "https://catalogo-ale-g.vercel.app",
+  credentials: true, // si usás cookies o auth headers
+}));
 server.use(morgan("dev"));
 server.use(express.json( ));
 
