@@ -74,4 +74,4 @@ document.querySelectorAll(".btn-ver-catalogo").forEach((btn) => {
 
     document.getElementById("productos").before(volverBtn);
   });
-});
+
