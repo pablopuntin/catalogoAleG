@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Agregar eventos a botones de catálogo
   document.querySelectorAll(".btn-ver-catalogo").forEach((btn) => {
     btn.addEventListener("click", () => {
+      e.preventDefault();
       const seccion = btn.dataset.seccion;
 
       // Ocultar sección inicial

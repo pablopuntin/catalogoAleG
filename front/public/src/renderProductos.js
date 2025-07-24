@@ -1,6 +1,6 @@
-export default async function renderProductos(seccion) {
+async function renderProductos(seccion) {
   const contenedor = document.getElementById("contenedor-productos");
-  contenedor.innerHTML = ""; // limpiamos el contenedor
+  contenedor.innerHTML = "";
 
   try {
     const res = await fetch(`${window.env.API_URL}/productos?seccion=${seccion}`);
@@ -13,10 +13,10 @@ export default async function renderProductos(seccion) {
       return;
     }
 
-
     productos.forEach((producto) => {
       const card = document.createElement("div");
-      card.className = "card";
+      card.className = "card m-2";
+      card.style.width = "18rem";
       card.innerHTML = `
         <img src="${producto.poster}" class="card-img-top" alt="${producto.titulo}">
         <div class="card-body">
@@ -32,3 +32,5 @@ export default async function renderProductos(seccion) {
     contenedor.innerHTML = "<p>Error al cargar los productos.</p>";
   }
 }
+
+export default renderProductos;
