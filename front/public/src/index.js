@@ -2,6 +2,7 @@ import renderProd from "./renderProductos.js";
 import { loginAdmin } from "./auth.js";
 import { isAdminLogged, logoutAdmin } from "./auth.js";
 
+
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
 const btnAdmin = document.getElementById("btn-admin");
@@ -47,21 +48,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-document.querySelectorAll(".ver-catalogo").forEach(btn => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
+document.querySelectorAll(".btn-ver-catalogo").forEach((btn) => {
+  btn.addEventListener("click", () => {
     const seccion = btn.dataset.seccion;
-
-    // Ocultar cards iniciales
-    document.querySelector(".hero-section").style.display = "none";
-
-    // Mostrar productos filtrados
-    fetch(`${apiBase}/productos`)
-      .then(res => res.json())
-      .then(data => {
-        const filtrados = data.filter(p => p.seccion.toLowerCase() === seccion.toLowerCase());
-        renderProd(filtrados);
-      });
+    renderProductos(seccion);
+  });
+  // Ocultar cards iniciales
+  document.querySelector(".hero-section").style.display = "none";
+  
+  // Mostrar productos filtrados
+  fetch(`${apiBase}/productos`)
+  .then(res => res.json())
+  .then(data => {
+    const filtrados = data.filter(p => p.seccion.toLowerCase() === seccion.toLowerCase());
+    renderProd(filtrados);
+        });
 
     // Botón volver
     const volverBtn = document.createElement("button");
