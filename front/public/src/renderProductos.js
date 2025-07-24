@@ -44,6 +44,15 @@ function renderProd(data) {
     contenedor.innerHTML += card;
   });
 
+  // botón arriba que lo lleve de vuelta al formulario
+  if (esAdmin) {
+  const volverFormBtn = document.createElement("a");
+  volverFormBtn.href = "formulario.html";
+  volverFormBtn.textContent = "Cargar otro producto";
+  volverFormBtn.className = "btn btn-info mb-4";
+  contenedor.before(volverFormBtn);
+}
+
   // Delegamos eventos de eliminar si es admin
   if (esAdmin) {
     document.querySelectorAll(".btn-eliminar").forEach(btn => {

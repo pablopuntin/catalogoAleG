@@ -16,7 +16,7 @@
     <a href="index.html" class="btn btn-outline-secondary m-5">Volver al catálogo</a>
     <h2 class="mb-4 text-center" id="form-title">Crear Producto</h2>
 
-    <form id="form-producto" enctype="multipart/form-data">
+<form id="form-producto" enctype="multipart/form-data" method="post">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
         <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -32,10 +32,18 @@
         <input type="number" class="form-control" id="precio" name="precio" required>
       </div>
 
-      <div class="mb-3">
-        <label for="seccion" class="form-label">Sección</label>
-        <input type="text" class="form-control" id="seccion" name="seccion" required>
-      </div>
+     <div class="mb-3">
+  <label for="seccion" class="form-label">Sección</label>
+  <select name="seccion" id="seccion" class="form-control">
+  <option value="calzas">Calzas</option>
+  <option value="musculosas">Musculosas</option>
+  <option value="shorts">Shorts</option>
+  <option value="buzos">Buzos</option>
+  <option value="marroquinería">Marroquinería</option>
+</select>
+
+</div>
+
 
       <div class="mb-3">
         <label for="stock" class="form-label">Stock</label>

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const idProducto = params.get("id");
 
   if (idProducto) {
-  fetch(`${apiBase}/productos/${idProducto}`)  // ✅ AHORA USÁS apiBase CORRECTAMENTE
+  fetch(`${apiBase}/productos/${idProducto}`)  
     .then(res => res.json())
     .then(data => {
       document.getElementById("nombre").value = data.nombre;
@@ -55,7 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
     : `${apiBase}/productos`;
 
   const metodo = idProducto ? "PUT" : "POST";
-
+    if (!formData.get("poster").name) {
+  formData.delete("poster"); // no enviar si no se cambió
+}
   try {
     const res = await fetch(url, {
       method: metodo,

@@ -1,5 +1,5 @@
 window.env = {
-  API_URL: "https://catalogo-aleg-back.onrender.com"
+  API_URL: //"https://catalogo-aleg-back.onrender.com" 
+   "http://localhost:3000"
 };
 
-//Cuando vuelvas, solo decime: "Seguimos con las imágenes", y arrancamos.

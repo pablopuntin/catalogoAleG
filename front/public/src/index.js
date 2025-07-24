@@ -1,5 +1,6 @@
 import renderProd from "./renderProductos.js";
 import { loginAdmin } from "./auth.js";
+import { isAdminLogged, logoutAdmin } from "./auth.js";
 
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
@@ -30,4 +31,46 @@ btnAdmin.addEventListener("click", async () => {
     console.log("Login fallido.");
     alert("Usuario o contraseña incorrectos");
   }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  if (isAdminLogged()) {
+    const btn = document.getElementById("btn-admin");
+    btn.textContent = "Logout";
+    btn.classList.remove("btn-outline-dark");
+    btn.classList.add("btn-danger");
+    btn.addEventListener("click", () => {
+      logoutAdmin();
+      location.reload(); // recarga la vista para volver al estado "no admin"
+    });
+  }
+});
+
+document.querySelectorAll(".ver-catalogo").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    const seccion = btn.dataset.seccion;
+
+    // Ocultar cards iniciales
+    document.querySelector(".hero-section").style.display = "none";
+
+    // Mostrar productos filtrados
+    fetch(`${apiBase}/productos`)
+      .then(res => res.json())
+      .then(data => {
+        const filtrados = data.filter(p => p.seccion.toLowerCase() === seccion.toLowerCase());
+        renderProd(filtrados);
+      });
+
+    // Botón volver
+    const volverBtn = document.createElement("button");
+    volverBtn.textContent = "← Volver al inicio";
+    volverBtn.classList.add("btn", "btn-secondary", "mt-3");
+    volverBtn.addEventListener("click", () => {
+      window.location.reload(); // simple: refresca para mostrar cards otra vez
+    });
+
+    document.getElementById("productos").before(volverBtn);
+  });
 });
