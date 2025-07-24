@@ -24,31 +24,30 @@ document.addEventListener("DOMContentLoaded", () => {
       // Ocultar sección inicial
       document.querySelector(".hero-section").style.display = "none";
 
-      // Cargar productos filtrados
-      fetch(`${apiBase}/productos`)
-        .then(res => {
-          if (!res.ok) throw new Error("Error al traer productos");
-          return res.json();
-        })
-        .then(data => {
-          const filtrados = data.filter(p => p.seccion.toLowerCase() === seccion.toLowerCase());
-          renderProd(filtrados);
 
-          // Agregar botón volver
-          const volverBtn = document.createElement("button");
-          volverBtn.textContent = "← Volver al inicio";
-          volverBtn.classList.add("btn", "btn-secondary", "mt-3");
-          volverBtn.addEventListener("click", () => window.location.reload());
+            renderProd(seccion); // ya hace el fetch y render interno
 
-          document.getElementById("productos").before(volverBtn);
-        })
-        .catch(err => console.error("Error:", err));
+      // Agregar botón volver
+      const volverBtn = document.createElement("button");
+      volverBtn.textContent = "← Volver al inicio";
+      volverBtn.classList.add("btn", "btn-secondary", "mt-3");
+      volverBtn.addEventListener("click", () => window.location.reload());
+
+      document.getElementById("productos").before(volverBtn);
+
+
     });
   });
 });
 
 // Login de admin
 btnAdmin.addEventListener("click", async () => {
+  if (isAdminLogged()) {
+    logoutAdmin();
+    location.reload();
+    return;
+  }
+
   const user = prompt("Ingrese usuario administrador:");
   if (!user) return;
   const password = prompt("Ingrese contraseña:");
