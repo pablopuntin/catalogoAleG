@@ -1,4 +1,4 @@
-import renderProd from "./renderProductos.js";
+import renderProductos from "./renderProductos.js";
 import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
 
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
