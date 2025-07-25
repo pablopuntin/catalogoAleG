@@ -14,6 +14,7 @@ async function renderProductos(seccion) {
     }
 
     productos.forEach((producto) => {
+       console.log("Imagen:", producto.poster);
       const card = document.createElement("div");
       card.className = "card m-2";
       card.style.width = "18rem";
