@@ -6,7 +6,18 @@ const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 const btnAdmin = document.getElementById("btn-admin");
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Actualiza el botón de admin según el estado
+  const botones = document.querySelectorAll(".btn-ver-catalogo");
+  const contenedorProductos = document.getElementById("contenedor-productos");
+  const filaCategorias = document.getElementById("fila-categorias");
+  const contenedorSubcategorias = document.getElementById("contenedor-subcategorias");
+  const botonVolver = document.getElementById("boton-volver");
+
+  const subcategoriasPorSeccion = {
+    calzas: ["Calzas", "Capri", "Biker", "Short"],
+    remeras: ["Remeras", "Musculosas", "Top"]
+  };
+
+  // 🔒 Login admin
   if (isAdminLogged()) {
     btnAdmin.textContent = "Logout";
     btnAdmin.classList.remove("btn-outline-dark");
@@ -17,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     btnAdmin.classList.add("btn-outline-dark");
   }
 
-  // Evento botón admin
   btnAdmin.addEventListener("click", async () => {
     if (isAdminLogged()) {
       logoutAdmin();
@@ -32,114 +42,113 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const exito = await loginAdmin(user, password);
     if (exito) {
-      console.log("Login exitoso");
       window.location.href = "formulario.html";
     } else {
       alert("Usuario o contraseña incorrectos");
     }
   });
 
-  // Agregar eventos a botones de sección
-  document.querySelectorAll(".btn-ver-catalogo").forEach((btn) => {
-    btn.addEventListener("click", async (e) => {
-      e.preventDefault(); // ahora está correcto
-
-      const seccion = btn.dataset.seccion;
-
-      // Ocultar sección inicial
-      const hero = document.querySelector(".hero-section");
-      if (hero) hero.style.display = "none";
-
-      // Mostrar productos de la sección
-      await renderProductos(seccion);
-
-      // Botón para volver al inicio
-      const volverBtn = document.createElement("button");
-      volverBtn.textContent = "← Volver al inicio";
-      volverBtn.classList.add("btn", "btn-secondary", "mt-3");
-      volverBtn.addEventListener("click", () => window.location.reload());
-
-      const productosSection = document.getElementById("productos");
-      if (productosSection) productosSection.before(volverBtn);
-    });
-  });
-    
-  });
-
-
-//captar click del navbar
-document.querySelectorAll(".nav-link").forEach((link) => {
-  link.addEventListener("click", async (e) => {
-    e.preventDefault();
-
-    const seccion = link.dataset.seccion;
-
-    // Si el link es "Inicio"
-    if (seccion === "inicio") {
-      // Mostrar hero y cards
-      const hero = document.querySelector(".hero-section");
-      if (hero) hero.style.display = "block";
-
-      const estaticas = document.getElementById("secciones-estaticas");
-      if (estaticas) estaticas.style.display = "block";
-
-      // Vaciar contenedor de productos
-      const contenedor = document.getElementById("contenedor-productos");
-      if (contenedor) contenedor.innerHTML = "";
-
-      // Eliminar botón volver si existe
-      const volverBtn = document.querySelector(".btn-secondary");
-      if (volverBtn) volverBtn.remove();
-
-      return;
-    }
-
-    // Si es otra sección
-    const hero = document.querySelector(".hero-section");
-    if (hero) hero.style.display = "none";
-
-    const estaticas = document.getElementById("secciones-estaticas");
-    if (estaticas) estaticas.style.display = "none";
-
-    await renderProductos(seccion);
-
-    // Botón para volver
-    const volverBtn = document.createElement("button");
-    volverBtn.textContent = "← Volver al inicio";
-    volverBtn.classList.add("btn", "btn-secondary", "mt-3");
-    volverBtn.addEventListener("click", () => {
-      // Simula click en el navbar "Inicio"
-      document.querySelector('[data-seccion="inicio"]').click();
-    });
-
-    const productosSection = document.getElementById("productos");
-    if (productosSection) productosSection.before(volverBtn);
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const botones = document.querySelectorAll(".btn-ver-catalogo");
-  const contenedorProductos = document.getElementById("contenedor-productos");
-  const filaCategorias = document.getElementById("fila-categorias"); // 5 tarjetas
-  const botonVolver = document.getElementById("boton-volver"); // nuevo botón
-
+  // 📁 Manejador de categorías
   botones.forEach((btn) => {
     btn.addEventListener("click", async () => {
       const seccion = btn.dataset.seccion;
-      filaCategorias.style.display = "none"; // oculta categorías
-      contenedorProductos.style.display = "flex"; // muestra productos
-      contenedorProductos.classList.add("justify-content-center");
-      botonVolver.style.display = "block"; // muestra botón volver
 
-      await renderProductos(seccion);
+      filaCategorias.style.display = "none";
+      contenedorProductos.innerHTML = "";
+      contenedorProductos.style.display = "none";
+      contenedorSubcategorias.innerHTML = "";
+
+      if (subcategoriasPorSeccion[seccion]) {
+        // Mostrar subcategorías
+        contenedorSubcategorias.classList.remove("d-none");
+        subcategoriasPorSeccion[seccion].forEach((subcat) => {
+          const boton = document.createElement("button");
+          boton.className = "btn btn-outline-primary m-2";
+          boton.textContent = subcat;
+          boton.addEventListener("click", async () => {
+            contenedorProductos.innerHTML = "";
+            contenedorProductos.style.display = "flex";
+            contenedorProductos.classList.add("justify-content-center");
+            await renderProductos(seccion, subcat.toLowerCase());
+          });
+          contenedorSubcategorias.appendChild(boton);
+        });
+      } else {
+        // Mostrar productos directo si no hay subcategorías
+        contenedorSubcategorias.classList.add("d-none");
+        await renderProductos(seccion);
+        contenedorProductos.style.display = "flex";
+        contenedorProductos.classList.add("justify-content-center");
+      }
+
+      // Mostrar botón volver
+      if (botonVolver) {
+        botonVolver.style.display = "block";
+        const volverBtn = botonVolver.querySelector("button");
+        if (volverBtn) {
+          volverBtn.onclick = () => {
+            filaCategorias.style.display = "flex";
+            contenedorProductos.innerHTML = "";
+            contenedorProductos.style.display = "none";
+            contenedorSubcategorias.classList.add("d-none");
+            contenedorSubcategorias.innerHTML = "";
+            botonVolver.style.display = "none";
+          };
+        }
+      }
     });
   });
 
-  // Acción al hacer clic en "Volver"
-  botonVolver.querySelector("button").addEventListener("click", () => {
-    contenedorProductos.innerHTML = ""; // limpia productos
-    contenedorProductos.style.display = "none"; // oculta contenedor
-    botonVolver.style.display = "none"; // oculta botón
-    filaCategorias.style.display = "flex"; // muestra las 5 tarjetas
+  // 🔗 Navbar
+  document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const seccion = link.dataset.seccion;
+
+      const hero = document.querySelector(".hero-section");
+      const estaticas = document.getElementById("secciones-estaticas");
+
+      if (seccion === "inicio") {
+        if (hero) hero.style.display = "block";
+        if (estaticas) estaticas.style.display = "block";
+
+        contenedorProductos.innerHTML = "";
+        contenedorProductos.style.display = "none";
+        contenedorSubcategorias.classList.add("d-none");
+        contenedorSubcategorias.innerHTML = "";
+        filaCategorias.style.display = "flex";
+        if (botonVolver) botonVolver.style.display = "none";
+        return;
+      }
+
+      if (hero) hero.style.display = "none";
+      if (estaticas) estaticas.style.display = "none";
+
+      contenedorProductos.innerHTML = "";
+      contenedorSubcategorias.innerHTML = "";
+      contenedorSubcategorias.classList.add("d-none");
+
+      await renderProductos(seccion);
+
+      contenedorProductos.style.display = "flex";
+      contenedorProductos.classList.add("justify-content-center");
+
+      if (botonVolver) {
+        botonVolver.style.display = "block";
+        const volverBtn = botonVolver.querySelector("button");
+        if (volverBtn) {
+          volverBtn.onclick = () => {
+            filaCategorias.style.display = "flex";
+            contenedorProductos.innerHTML = "";
+            contenedorProductos.style.display = "none";
+            contenedorSubcategorias.classList.add("d-none");
+            contenedorSubcategorias.innerHTML = "";
+            botonVolver.style.display = "none";
+            if (hero) hero.style.display = "block";
+            if (estaticas) estaticas.style.display = "block";
+          };
+        }
+      }
+    });
   });
 });

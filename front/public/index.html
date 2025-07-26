@@ -63,42 +63,22 @@
     </header>
 
     <main>
-    <!-- Hero Section -->
-    <section id="home" class="hero-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="display-4 fw-bold mb-lg-3">Nuestro Catálogo</h1>
-                    <p class="lead mb-3 ">Explora nuestra colección de calzas, buzos y marroquinería. Encuentra el estilo perfecto para ti.</p>
-                     
-                </div>
-            </div>
-        </div>
-        
-        <!-- Sección de Galería de Imágenes -->
-<section class="py-5 mb-1">
-  
+      <!-- Sección de categorías (home) -->
+<section id="home" class="hero-section py-5">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold mb-3">Nuestro Catálogo</h1>
+    <p class="lead mb-5">Explora nuestra colección y encontrá tu estilo ideal.</p>
 
-<!-- Contenedor oculto para los productos de cada sección 
-<div id="contenedor-productos" class="row mt-4" style="display: none;"></div>-->
-
-  <div id="secciones-estaticas" class="container">
+    <!-- Contenedor de categorías -->
     <div id="fila-categorias" class="row g-4">
       <!-- Tarjeta 1 -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <div class="card-img-top overflow-hidden" style="height: 55vh;">
-            <img
-              src="https://acdn-us.mitiendanube.com/stores/004/278/967/products/227-cbe8a3d5b77c6f913417480307418100-1024-1024.png"
-              class="img-fluid w-100 h-100"
-              alt="Imagen 1"
-              style="object-fit: cover;"
-            />
-          </div>
+          <img src="https://acdn-us.mitiendanube.com/stores/004/278/967/products/227-cbe8a3d5b77c6f913417480307418100-1024-1024.png" class="card-img-top" alt="Calzas" style="object-fit: cover; height: 55vh;">
           <div class="card-body">
             <h5 class="card-title">Calzas</h5>
-                            <p class="card-text">Descubre nuestra variedad de calzas cómodas y elegantes para todas las ocasiones.</p>
-                          <button class="btn btn-primary btn-ver-catalogo" data-seccion="calzas">Ver catálogo</button>
+            <p class="card-text">Variedad de calzas cómodas y elegantes para todas las ocasiones.</p>
+            <button class="btn btn-primary btn-ver-catalogo" data-seccion="calzas">Ver catálogo</button>
           </div>
         </div>
       </div>
@@ -106,18 +86,11 @@
       <!-- Tarjeta 2 -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <div class="card-img-top overflow-hidden" style="height: 55vh;">
-            <img
-              src="https://i.pinimg.com/236x/22/88/3d/22883d6f0c19cae055bf3bc75cb368c1.jpg"
-              class="img-fluid w-100 h-100"
-              alt="Imagen 2"
-              style="object-fit: cover;"
-            />
-          </div>
+          <img src="https://i.pinimg.com/236x/22/88/3d/22883d6f0c19cae055bf3bc75cb368c1.jpg" class="card-img-top" alt="Remeras" style="object-fit: cover; height: 55vh;">
           <div class="card-body">
             <h5 class="card-title">Remeras</h5>
-                            <p class="card-text">Explora nuestra colección de remeras y musculosas modernos y cómodos para el día a día.</p>
-                         <button class="btn btn-primary btn-ver-catalogo" data-seccion="remeras">Ver catálogo</button>
+            <p class="card-text">Remeras y musculosas modernas y cómodas.</p>
+            <button class="btn btn-primary btn-ver-catalogo" data-seccion="remeras">Ver catálogo</button>
           </div>
         </div>
       </div>
@@ -125,80 +98,54 @@
       <!-- Tarjeta 3 -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <div class="card-img-top overflow-hidden" style="height: 55vh;">
-            <img
-              src="https://i.pinimg.com/236x/62/f2/3f/62f23fef8a128c1bca408b08277b5195.jpg"
-              class="img-fluid w-100 h-100"
-              alt="Imagen 3"
-              style="object-fit: cover;"
-            />
+          <img src="https://i.pinimg.com/236x/62/f2/3f/62f23fef8a128c1bca408b08277b5195.jpg" class="card-img-top" alt="Buzos" style="object-fit: cover; height: 55vh;">
+          <div class="card-body">
+            <h5 class="card-title">Buzos</h5>
+            <p class="card-text">Colección de buzos modernos para el día a día.</p>
+            <button class="btn btn-primary btn-ver-catalogo" data-seccion="buzos">Ver catálogo</button>
           </div>
-           <h5 class="card-title">Buzos</h5>
-                            <p class="card-text">Explora nuestra colección de buzos modernos y cómodos para el día a día.</p>
-                          <button class="btn btn-primary btn-ver-catalogo" data-seccion="buzos">Ver catálogo</button>
         </div>
       </div>
 
       <!-- Tarjeta 4 -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <div class="card-img-top overflow-hidden" style="height: 55vh;">
-            <img
-              src="https://mussleathers.com/wp-content/uploads/2021/06/foto1-1536x1024.jpg"
-              class="img-fluid w-100 h-100"
-              alt="Imagen 4"
-              style="object-fit: cover;"
-            />
-          </div>
-         <div class="card-body">
-              <h5 class="card-title">Marroquinería</h5>
-                            <p class="card-text">Conoce nuestra línea de carteras, bolsos y accesorios de cuero de primera calidad.</p>
-                          <button class="btn btn-primary btn-ver-catalogo" data-seccion="marroquineria">Ver catálogo</button>
-
+          <img src="https://mussleathers.com/wp-content/uploads/2021/06/foto1-1536x1024.jpg" class="card-img-top" alt="Marroquinería" style="object-fit: cover; height: 55vh;">
+          <div class="card-body">
+            <h5 class="card-title">Marroquinería</h5>
+            <p class="card-text">Carteras, bolsos y accesorios de cuero de calidad.</p>
+            <button class="btn btn-primary btn-ver-catalogo" data-seccion="marroquineria">Ver catálogo</button>
           </div>
         </div>
       </div>
-    </div>
 
-     <!-- Tarjeta 5 -->
+      <!-- Tarjeta 5 -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
-          <div class="card-img-top overflow-hidden" style="height: 55vh;">
-            <img
-              src="./asset/img/pantalon.jpeg"
-              class="img-fluid w-100 h-100"
-              alt="Imagen 4"
-              style="object-fit: cover;"
-            />
-          </div>
-         <div class="card-body">
-              <h5 class="card-title">conjuntos</h5>
-                            <p class="card-text">Conoce nuestra línea de cconjuntos de primera calidad.</p>
-                          <button class="btn btn-primary btn-ver-catalogo" data-seccion="conjuntos">Ver catálogo</button>
+          <img src="./asset/img/pantalon.jpeg" class="card-img-top" alt="Conjuntos" style="object-fit: cover; height: 55vh;">
+          <div class="card-body">
+            <h5 class="card-title">Conjuntos</h5>
+            <p class="card-text">Conjuntos completos para todo tipo de ocasión.</p>
+            <button class="btn btn-primary btn-ver-catalogo" data-seccion="conjuntos">Ver catálogo</button>
           </div>
         </div>
       </div>
-      <!-- Contenedor oculto para los productos de cada sección -->
-<div id="contenedor-productos" class="row mt-4" style="display: none;"></div>
-
     </div>
-  </section>
-    </section>
+  </div>
+</section>
 
+<!-- Contenedor dinámico de subcategorías -->
+<div id="contenedor-subcategorias" class="my-4 d-none text-center"></div>
 
-    <!-- Productos Section -->
-    <section class="container accordion">
-      <!-- Botón para volver a las categorías -->
-<div id="boton-volver" class="text-center my-4" style="display: none;">
-  <button class="btn btn-secondary">← Volver a categorías</button>
-</div>
+<!-- Contenedor dinámico de productos -->
+<section class="container my-5">
+  <div id="boton-volver" class="text-center mb-4 d-none">
+    <button class="btn btn-secondary">← Volver a categorías</button>
+  </div>
 
-        <div id="contenedor-productos" class="contenedor-productos row">
+  <div id="contenedor-productos" class="row d-none"></div>
+</section>
 
-        </div>
-
-        </div>
-    </section>
     </main>
 
 

@@ -1,9 +1,12 @@
-async function renderProductos(seccion) {
+async function renderProductos(seccion, subcategoria = "") {
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
 
   try {
-    const res = await fetch(`${window.env.API_URL}/productos?seccion=${seccion}`);
+    let url = `${window.env.API_URL}/productos?seccion=${seccion}`;
+    if (subcategoria) url += `&subcategoria=${subcategoria}`;
+
+    const res = await fetch(url);
     if (!res.ok) throw new Error("Error al cargar productos");
 
     const productos = await res.json();
@@ -14,14 +17,13 @@ async function renderProductos(seccion) {
     }
 
     productos.forEach((producto) => {
-       console.log("Imagen:", producto.poster);
       const card = document.createElement("div");
       card.className = "card m-2";
       card.style.width = "18rem";
       card.innerHTML = `
-        <img src="${producto.poster}" class="card-img-top" alt="${producto.titulo}">
+        <img src="${producto.poster}" class="card-img-top" alt="${producto.nombre}">
         <div class="card-body">
-          <h5 class="card-title">${producto.titulo}</h5>
+          <h5 class="card-title">${producto.nombre}</h5>
           <p class="card-text">${producto.descripcion}</p>
           <p><strong>Precio:</strong> $${producto.precio}</p>
         </div>
@@ -33,8 +35,5 @@ async function renderProductos(seccion) {
     contenedor.innerHTML = "<p>Error al cargar los productos.</p>";
   }
 }
-
-
-
 
 export default renderProductos;
