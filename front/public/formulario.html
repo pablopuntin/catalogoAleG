@@ -36,14 +36,36 @@
       </div>
 
      <div class="mb-3">
-  <label for="seccion" class="form-label">Sección</label>
-  <select name="seccion" id="seccion" class="form-control">
-  <option value="calzas">Calzas</option>
-   <option value="remeras">Remeras</option>
+      <!-- select con subcategorias -->
+      <select name="subcategoria" id="subcategoria" class="form-control" required>
+  <option value="">Seleccione una categoría o subcategoría</option>
+
+  <optgroup label="Calzas">
+    <option value="calzas">Calzas (general)</option>
+    <option value="biker">Biker</option>
+    <option value="capri">Capri</option>
+    <option value="short">Short</option>
+  </optgroup>
+
+  <optgroup label="Remeras">
+    <option value="remeras">Remeras (general)</option>
+    <option value="musculosas">Musculosas</option>
+    <option value="top">Top</option>
+  </optgroup>
+
+  <optgroup label="Buzos">
     <option value="buzos">Buzos</option>
-  <option value="marroquineria">Marroquinería</option>
-   <option value="conjuntos">Conjuntos</option>
+  </optgroup>
+
+  <optgroup label="Marroquinería">
+    <option value="marroquineria">Marroquinería</option>
+  </optgroup>
+
+  <optgroup label="Conjuntos">
+    <option value="conjuntos">Conjuntos</option>
+  </optgroup>
 </select>
+
 
 </div>
 
