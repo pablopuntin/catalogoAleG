@@ -65,25 +65,30 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!volverBtn) return;
 
     volverBtn.onclick = () => {
-      filaCategorias.style.display = "flex";
-      contenedorProductos.innerHTML = "";
-      contenedorProductos.style.display = "none";
-      contenedorSubcategorias.classList.add("d-none");
-      contenedorSubcategorias.innerHTML = "";
-      botonVolver.style.display = "none";
+  filaCategorias.style.display = "flex";
+  contenedorProductos.innerHTML = "";
+  contenedorProductos.classList.add("d-none");
+  contenedorProductos.classList.remove("justify-content-center");
 
-      if (hero) hero.style.display = "block";
-      if (estaticas) estaticas.style.display = "block";
-    };
-  }
+  contenedorSubcategorias.classList.add("d-none");
+  contenedorSubcategorias.innerHTML = "";
+  botonVolver.style.display = "none";
+
+  if (hero) hero.style.display = "block";
+  if (estaticas) estaticas.style.display = "block";
+};
+
 
   // Limpia la vista de productos y subcategorías
   function limpiarVista() {
-    contenedorProductos.innerHTML = "";
-    contenedorProductos.style.display = "none";
-    contenedorSubcategorias.innerHTML = "";
-    contenedorSubcategorias.classList.add("d-none");
-  }
+  contenedorProductos.innerHTML = "";
+  contenedorProductos.classList.add("d-none");
+  contenedorProductos.classList.remove("justify-content-center");
+
+  contenedorSubcategorias.innerHTML = "";
+  contenedorSubcategorias.classList.add("d-none");
+}
+
 
   // Muestra las subcategorías para una sección dada
   function mostrarSubcategorias(seccion) {
