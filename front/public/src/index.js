@@ -1,4 +1,3 @@
-// index.js
 import renderProductos from "./renderProductos.js";
 import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
 
@@ -25,25 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     conjuntos: ["Conjuntos"],
   };
 
-  // Mapeo subcategoría => categoría principal
-  const categoriaPorSubcategoria = {
-    calzas: "calzas",
-    biker: "calzas",
-    capri: "calzas",
-    short: "calzas",
-
-    remeras: "remeras",
-    musculosas: "remeras",
-    top: "remeras",
-
-    buzos: "buzos",
-    marroquineria: "marroquineria",
-    conjuntos: "conjuntos",
-  };
-
   // --- Funciones auxiliares ---
 
-  // Actualiza el botón admin según login/logout
   function actualizarBotonAdmin() {
     if (isAdminLogged()) {
       btnAdmin.textContent = "Logout";
@@ -56,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Maneja el click del botón "Volver"
   function configurarBotonVolver() {
     if (!botonVolver) return;
 
@@ -65,32 +46,30 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!volverBtn) return;
 
     volverBtn.onclick = () => {
-  filaCategorias.style.display = "flex";
-  contenedorProductos.innerHTML = "";
-  contenedorProductos.classList.add("d-none");
-  contenedorProductos.classList.remove("justify-content-center");
+      filaCategorias.style.display = "flex";
+      contenedorProductos.innerHTML = "";
+      contenedorProductos.classList.add("d-none");
+      contenedorProductos.classList.remove("justify-content-center");
 
-  contenedorSubcategorias.classList.add("d-none");
-  contenedorSubcategorias.innerHTML = "";
-  botonVolver.style.display = "none";
+      contenedorSubcategorias.innerHTML = "";
+      contenedorSubcategorias.classList.add("d-none");
 
-  if (hero) hero.style.display = "block";
-  if (estaticas) estaticas.style.display = "block";
-};
+      botonVolver.style.display = "none";
 
+      if (hero) hero.style.display = "block";
+      if (estaticas) estaticas.style.display = "block";
+    };
+  }
 
-  // Limpia la vista de productos y subcategorías
   function limpiarVista() {
-  contenedorProductos.innerHTML = "";
-  contenedorProductos.classList.add("d-none");
-  contenedorProductos.classList.remove("justify-content-center");
+    contenedorProductos.innerHTML = "";
+    contenedorProductos.classList.add("d-none");
+    contenedorProductos.classList.remove("justify-content-center");
 
-  contenedorSubcategorias.innerHTML = "";
-  contenedorSubcategorias.classList.add("d-none");
-}
+    contenedorSubcategorias.innerHTML = "";
+    contenedorSubcategorias.classList.add("d-none");
+  }
 
-
-  // Muestra las subcategorías para una sección dada
   function mostrarSubcategorias(seccion) {
     contenedorSubcategorias.innerHTML = "";
     contenedorSubcategorias.classList.remove("d-none");
@@ -101,8 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
       boton.textContent = subcat;
       boton.addEventListener("click", async () => {
         limpiarVista();
-        contenedorProductos.style.display = "flex";
-        contenedorProductos.classList.add("justify-content-center");
         await renderProductos(seccion, subcat.toLowerCase());
         configurarBotonVolver();
       });
@@ -134,26 +111,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Manejador de click en categorías
   botonesCategorias.forEach((btn) => {
     btn.addEventListener("click", async () => {
       const seccion = btn.dataset.seccion;
-
       filaCategorias.style.display = "none";
       limpiarVista();
 
       if (subcategoriasPorSeccion[seccion]) {
         mostrarSubcategorias(seccion);
       } else {
-        contenedorProductos.style.display = "flex";
-        contenedorProductos.classList.add("justify-content-center");
         await renderProductos(seccion);
         configurarBotonVolver();
       }
     });
   });
 
-  // Manejador de navegación navbar
   navLinks.forEach((link) => {
     link.addEventListener("click", async (e) => {
       e.preventDefault();
@@ -173,8 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (estaticas) estaticas.style.display = "none";
 
       limpiarVista();
-      contenedorProductos.style.display = "flex";
-      contenedorProductos.classList.add("justify-content-center");
       await renderProductos(seccion);
       configurarBotonVolver();
     });
