@@ -133,7 +133,7 @@ form.addEventListener("submit", async (e) => {
   formData.append("data", JSON.stringify(data));
 
   try {
-    const response = await fetch(`${apiBase}/producto`, {
+    const response = await fetch(`${apiBase}/productos`, {
       method: "POST",
       body: formData,
     });
