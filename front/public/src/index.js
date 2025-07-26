@@ -59,9 +59,60 @@ document.addEventListener("DOMContentLoaded", () => {
       volverBtn.classList.add("btn", "btn-secondary", "mt-3");
       volverBtn.addEventListener("click", () => window.location.reload());
 
-      // Insertarlo antes del contenedor de productos
       const productosSection = document.getElementById("productos");
       if (productosSection) productosSection.before(volverBtn);
     });
+  });
+    
+  });
+
+
+//captar click del navbar
+document.querySelectorAll(".nav-link").forEach((link) => {
+  link.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const seccion = link.dataset.seccion;
+
+    // Si el link es "Inicio"
+    if (seccion === "inicio") {
+      // Mostrar hero y cards
+      const hero = document.querySelector(".hero-section");
+      if (hero) hero.style.display = "block";
+
+      const estaticas = document.getElementById("secciones-estaticas");
+      if (estaticas) estaticas.style.display = "block";
+
+      // Vaciar contenedor de productos
+      const contenedor = document.getElementById("contenedor-productos");
+      if (contenedor) contenedor.innerHTML = "";
+
+      // Eliminar botón volver si existe
+      const volverBtn = document.querySelector(".btn-secondary");
+      if (volverBtn) volverBtn.remove();
+
+      return;
+    }
+
+    // Si es otra sección
+    const hero = document.querySelector(".hero-section");
+    if (hero) hero.style.display = "none";
+
+    const estaticas = document.getElementById("secciones-estaticas");
+    if (estaticas) estaticas.style.display = "none";
+
+    await renderProductos(seccion);
+
+    // Botón para volver
+    const volverBtn = document.createElement("button");
+    volverBtn.textContent = "← Volver al inicio";
+    volverBtn.classList.add("btn", "btn-secondary", "mt-3");
+    volverBtn.addEventListener("click", () => {
+      // Simula click en el navbar "Inicio"
+      document.querySelector('[data-seccion="inicio"]').click();
+    });
+
+    const productosSection = document.getElementById("productos");
+    if (productosSection) productosSection.before(volverBtn);
   });
 });

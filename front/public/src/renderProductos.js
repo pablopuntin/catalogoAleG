@@ -34,4 +34,7 @@ async function renderProductos(seccion) {
   }
 }
 
+
+
+
 export default renderProductos;
