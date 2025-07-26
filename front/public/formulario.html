@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Formulario de Producto</title>
-  <link rel="stylesheet" href="./asset/styles/reset.css">
- <link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
-<link rel="stylesheet" href="./asset/styles/form.css">
 
+  <!-- Reset + Bootstrap -->
+  <link rel="stylesheet" href="./asset/styles/reset.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./asset/styles/form.css" />
 </head>
-<body class="text-white-50 bg-dark ">
+<body class="text-white-50 bg-dark">
 
-<div class="my-container container mt-5 w-50 mx-auto">
-  <button id="btn-logout" class="btn btn-danger mb-4">Cerrar sesión</button>
+  <div class="my-container container mt-5 w-50 mx-auto">
+    <!-- Logout y volver -->
+    <button id="btn-logout" class="btn btn-danger mb-4">Cerrar sesión</button>
     <a href="index.html" class="btn btn-outline-secondary m-5">Volver al catálogo</a>
+
+    <!-- Título dinámico -->
     <h2 class="mb-4 text-center" id="form-title">Crear Producto</h2>
 
-<form id="form-producto" enctype="multipart/form-data" method="post">
+    <!-- Formulario -->
+    <form id="form-producto" enctype="multipart/form-data" method="post">
       <div class="mb-3">
         <label for="nombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" required>
+        <input type="text" class="form-control" id="nombre" name="nombre" required />
       </div>
 
       <div class="mb-3">
@@ -32,70 +34,71 @@
 
       <div class="mb-3">
         <label for="precio" class="form-label">Precio</label>
-        <input type="number" class="form-control" id="precio" name="precio" required>
+        <input type="number" class="form-control" id="precio" name="precio" required />
       </div>
 
-     <div class="mb-3">
-      <!-- select con subcategorias -->
-    <select name="subcategoria" id="categoria" class="form-control" required>
+      <div class="mb-3">
+        <label for="categoria" class="form-label">Subcategoría</label>
+        <select name="subcategoria" id="categoria" class="form-control" required>
+          <option value="">Seleccione una categoría o subcategoría</option>
 
-  <option value="">Seleccione una categoría o subcategoría</option>
+          <optgroup label="Calzas">
+            <option value="calzas">Calzas (general)</option>
+            <option value="biker">Biker</option>
+            <option value="capri">Capri</option>
+            <option value="short">Short</option>
+          </optgroup>
 
-  <optgroup label="Calzas">
-    <option value="calzas">Calzas (general)</option>
-    <option value="biker">Biker</option>
-    <option value="capri">Capri</option>
-    <option value="short">Short</option>
-  </optgroup>
+          <optgroup label="Remeras">
+            <option value="remeras">Remeras (general)</option>
+            <option value="musculosas">Musculosas</option>
+            <option value="top">Top</option>
+          </optgroup>
 
-  <optgroup label="Remeras">
-    <option value="remeras">Remeras (general)</option>
-    <option value="musculosas">Musculosas</option>
-    <option value="top">Top</option>
-  </optgroup>
+          <optgroup label="Buzos">
+            <option value="buzos">Buzos</option>
+          </optgroup>
 
-  <optgroup label="Buzos">
-    <option value="buzos">Buzos</option>
-  </optgroup>
+          <optgroup label="Marroquinería">
+            <option value="marroquineria">Marroquinería</option>
+          </optgroup>
 
-  <optgroup label="Marroquinería">
-    <option value="marroquineria">Marroquinería</option>
-  </optgroup>
-
-  <optgroup label="Conjuntos">
-    <option value="conjuntos">Conjuntos</option>
-  </optgroup>
-</select>
-
-
-</div>
-
+          <optgroup label="Conjuntos">
+            <option value="conjuntos">Conjuntos</option>
+          </optgroup>
+        </select>
+      </div>
 
       <div class="mb-3">
         <label for="stock" class="form-label">Stock</label>
-        <input type="number" class="form-control" id="stock" name="stock" required>
+        <input type="number" class="form-control" id="stock" name="stock" required />
       </div>
 
       <div class="mb-3">
         <label for="disponible" class="form-label">Talles disponibles (separados por coma)</label>
-        <input type="text" class="form-control" id="disponible" name="disponible" placeholder="Ej: S, M, L" required>
+        <input type="text" class="form-control" id="disponible" name="disponible" placeholder="Ej: S, M, L" required />
       </div>
 
       <div class="mb-3">
         <label for="poster" class="form-label">Imagen del producto</label>
-        <input type="file" class="form-control" id="poster" name="poster">
+        <input type="file" class="form-control" id="poster" name="poster" />
+      </div>
+
+      <div class="mb-3">
+        <label for="seccion" class="form-label">Sección (solo edición)</label>
+        <input type="text" class="form-control" id="seccion" name="seccion" readonly />
       </div>
 
       <button type="submit" class="btn btn-primary w-25">Guardar</button>
     </form>
   </div>
-   <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Scripts -->
   <script src="./env.js"></script>
   <script type="module" src="./src/admin.js"></script>
- 
   <script type="module" src="./src/renderProductos.js"></script>
 </body>
 </html>
