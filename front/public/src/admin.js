@@ -1,6 +1,22 @@
 // src/admin.js
 import { isAdminLogged, logoutAdmin } from "./auth.js";
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
+const categoriaPorSubcategoria = {
+  calzas: "calzas",
+  biker: "calzas",
+  capri: "calzas",
+  short: "calzas",
+
+  remeras: "remeras",
+  musculosas: "remeras",
+  top: "remeras",
+
+  buzos: "buzos",
+  marroquineria: "marroquineria",
+  conjuntos: "conjuntos"
+};
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
   if (!isAdminLogged()) {
@@ -59,6 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
   formData.delete("poster"); // no enviar si no se cambió
 }
   try {
+    const subcategoria = formData.get("categoria"); // o como se llame el campo del formulario
+const seccion = categoriaPorSubcategoria[subcategoria?.toLowerCase()];
+
+if (!seccion) {
+  alert("No se pudo determinar la sección. Verificá la subcategoría seleccionada.");
+  return;
+}
+
+formData.append("seccion", seccion);
+
     const res = await fetch(url, {
       method: metodo,
       body: formData,
