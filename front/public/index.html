@@ -74,10 +74,16 @@
                 </div>
             </div>
         </div>
+        
         <!-- Sección de Galería de Imágenes -->
 <section class="py-5 mb-1">
+  
+
+<!-- Contenedor oculto para los productos de cada sección 
+<div id="contenedor-productos" class="row mt-4" style="display: none;"></div>-->
+
   <div id="secciones-estaticas" class="container">
-    <div class="row g-4">
+    <div id="fila-categorias" class="row g-4">
       <!-- Tarjeta 1 -->
       <div class="col-12 col-md-6 col-lg-3">
         <div class="card h-100 shadow-sm">
@@ -93,8 +99,6 @@
             <h5 class="card-title">Calzas</h5>
                             <p class="card-text">Descubre nuestra variedad de calzas cómodas y elegantes para todas las ocasiones.</p>
                           <button class="btn btn-primary btn-ver-catalogo" data-seccion="calzas">Ver catálogo</button>
-
-
           </div>
         </div>
       </div>
@@ -114,8 +118,6 @@
             <h5 class="card-title">Remeras</h5>
                             <p class="card-text">Explora nuestra colección de remeras y musculosas modernos y cómodos para el día a día.</p>
                          <button class="btn btn-primary btn-ver-catalogo" data-seccion="remeras">Ver catálogo</button>
-
-
           </div>
         </div>
       </div>
@@ -134,8 +136,6 @@
            <h5 class="card-title">Buzos</h5>
                             <p class="card-text">Explora nuestra colección de buzos modernos y cómodos para el día a día.</p>
                           <button class="btn btn-primary btn-ver-catalogo" data-seccion="buzos">Ver catálogo</button>
-
-
         </div>
       </div>
 
@@ -159,13 +159,40 @@
         </div>
       </div>
     </div>
-  </>
-</section>
+
+     <!-- Tarjeta 5 -->
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card h-100 shadow-sm">
+          <div class="card-img-top overflow-hidden" style="height: 55vh;">
+            <img
+              src="./asset/img/pantalon.jpeg"
+              class="img-fluid w-100 h-100"
+              alt="Imagen 4"
+              style="object-fit: cover;"
+            />
+          </div>
+         <div class="card-body">
+              <h5 class="card-title">conjuntos</h5>
+                            <p class="card-text">Conoce nuestra línea de cconjuntos de primera calidad.</p>
+                          <button class="btn btn-primary btn-ver-catalogo" data-seccion="conjuntos">Ver catálogo</button>
+          </div>
+        </div>
+      </div>
+      <!-- Contenedor oculto para los productos de cada sección -->
+<div id="contenedor-productos" class="row mt-4" style="display: none;"></div>
+
+    </div>
+  </section>
     </section>
 
 
     <!-- Productos Section -->
     <section class="container accordion">
+      <!-- Botón para volver a las categorías -->
+<div id="boton-volver" class="text-center my-4" style="display: none;">
+  <button class="btn btn-secondary">← Volver a categorías</button>
+</div>
+
         <div id="contenedor-productos" class="contenedor-productos row">
 
         </div>

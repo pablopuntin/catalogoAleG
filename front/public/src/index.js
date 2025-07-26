@@ -1,4 +1,4 @@
-// main.js
+// index.js
 import renderProductos from "./renderProductos.js";
 import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
 
@@ -114,5 +114,32 @@ document.querySelectorAll(".nav-link").forEach((link) => {
 
     const productosSection = document.getElementById("productos");
     if (productosSection) productosSection.before(volverBtn);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const botones = document.querySelectorAll(".btn-ver-catalogo");
+  const contenedorProductos = document.getElementById("contenedor-productos");
+  const filaCategorias = document.getElementById("fila-categorias"); // 5 tarjetas
+  const botonVolver = document.getElementById("boton-volver"); // nuevo botón
+
+  botones.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const seccion = btn.dataset.seccion;
+      filaCategorias.style.display = "none"; // oculta categorías
+      contenedorProductos.style.display = "flex"; // muestra productos
+      contenedorProductos.classList.add("justify-content-center");
+      botonVolver.style.display = "block"; // muestra botón volver
+
+      await renderProductos(seccion);
+    });
+  });
+
+  // Acción al hacer clic en "Volver"
+  botonVolver.querySelector("button").addEventListener("click", () => {
+    contenedorProductos.innerHTML = ""; // limpia productos
+    contenedorProductos.style.display = "none"; // oculta contenedor
+    botonVolver.style.display = "none"; // oculta botón
+    filaCategorias.style.display = "flex"; // muestra las 5 tarjetas
   });
 });
