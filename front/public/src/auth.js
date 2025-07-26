@@ -10,6 +10,7 @@ export async function loginAdmin(user, password) {
     });
 
     if (!res.ok) {
+      
       const textoPlano = await res.text(); // evitás parsear como JSON si no lo es
       console.error("Respuesta no OK en login:", textoPlano);
       return false;

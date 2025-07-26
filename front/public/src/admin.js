@@ -1,6 +1,6 @@
 // // src/admin.js
-// import { isAdminLogged, logoutAdmin } from "./auth.js";
-// const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
+ import { isAdminLogged, logoutAdmin } from "./auth.js";
+ const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 // const categoriaPorSubcategoria = {
 //   calzas: "calzas",
 //   biker: "calzas",
