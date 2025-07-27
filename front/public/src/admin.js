@@ -62,12 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       seccion: formData.get("seccion")
     };
 
-    // Agregamos la imagen si se seleccionó
-    const imagen = formData.get("poster");
-    if (imagen && imagen.size > 0) {
-      formData.append("poster", imagen);
-    }
-
+    
     // Agregamos objeto JSON como string (opcional según backend)
     formData.append("data", JSON.stringify(data));
 
