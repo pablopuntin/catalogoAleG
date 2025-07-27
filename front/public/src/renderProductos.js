@@ -127,7 +127,7 @@ function renderProductos(lista) {
     card.className = "card h-100 shadow-sm";
 
     card.innerHTML = `
-      <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; height: 75vh;">
+      <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; w-100 height: 75vh;">
       <div class="card-body">
         <h5 class="card-title">${prod.nombre}</h5>
         <p class="card-text">${prod.descripcion}</p>
