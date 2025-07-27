@@ -123,16 +123,18 @@ function renderProductos(lista) {
     col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
 
     const card = document.createElement("div");
-    card.className = "card h-100 shadow-sm";
+    card.className = "col-12 col-md-6 col-lg-3"; // Asegura la misma clase de columna
+card.innerHTML = `
+  <div class="card h-100 shadow-sm">
+    <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; height: 55vh;">
+    <div class="card-body">
+      <h5 class="card-title">${prod.nombre}</h5>
+      <p class="card-text">${prod.descripcion}</p>
+      <p class="fw-bold">$${prod.precio}</p>
+    </div>
+  </div>
+`;
 
-    card.innerHTML = `
-      <img src="${prod.poster}" class="card-img-top img-fluid w-100" alt="${prod.nombre}" style="object-fit: cover; height: 250px;" />
-      <div class="card-body">
-        <h5 class="card-title">${prod.nombre}</h5>
-        <p class="card-text">${prod.descripcion}</p>
-        <p class="fw-bold">$${prod.precio}</p>
-      </div>
-    `;
 
     // Si está logueado el admin, agregamos botones CRUD
     if (isAdminLogged()) {
