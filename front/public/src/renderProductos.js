@@ -4,9 +4,19 @@ import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
 
 renderNavbar();
 
+const seccionesConSubcategorias = {
+  calzas: ["short", "biker", "capri"],
+  remeras: ["top", "musculosas", "remeras"]
+};
+
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
 document.addEventListener("DOMContentLoaded", async () => {
+  if (seccionesConSubcategorias[seccion] && !subcategoria) {
+  renderSubcategorias(seccion);
+  return;
+}
+
   const params = new URLSearchParams(window.location.search);
   const seccion = params.get("seccion");
   const subcategoria = params.get("subcategoria");
@@ -84,6 +94,15 @@ function renderProductos(lista) {
   }
 
   lista.forEach((prod) => {
+    if (isAdminLogged()) {
+  card.innerHTML += `
+    <div class="card-footer d-flex justify-content-between">
+      <button class="btn btn-sm btn-warning">Editar</button>
+      <button class="btn btn-sm btn-danger">Eliminar</button>
+    </div>
+  `;
+}
+
     const col = document.createElement("div");
     col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
 
