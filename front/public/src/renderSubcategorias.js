@@ -6,7 +6,7 @@ function renderSubcategorias(seccion) {
 
   subcategorias.forEach(sub => {
     const col = document.createElement("div");
-    col.className = "col-12 col-md-4 col-lg-3";
+   col.className = "col-12 col-md-6 col-lg-4 col-xl-3";
 
     const card = document.createElement("div");
     card.className = "card shadow-sm h-100";
