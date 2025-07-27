@@ -1,5 +1,7 @@
 // scripts/renderProductos.js
 import { renderNavbar } from "./navbar.js";
+import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
+
 renderNavbar();
 
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
@@ -18,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Actualizamos el título de forma flexible
+  // Actualizamos el título
   titulo.textContent = subcategoria
     ? `${seccion.toUpperCase()} - ${subcategoria.toUpperCase()}`
     : `${seccion.toUpperCase()}`;
@@ -38,11 +40,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     contenedor.innerHTML = `<p class="text-danger">Error al cargar productos.</p>`;
   }
 
-  document.getElementById("btn-volver").addEventListener("click", () => {
-    window.location.href = "index.html";
-  });
+  // Botón volver al inicio
+  const btnVolver = document.getElementById("btn-volver");
+  if (btnVolver) {
+    btnVolver.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  }
+
+  // Botón Admin (igual que en index.js)
+  const btnAdmin = document.getElementById("btn-admin");
+  if (btnAdmin) {
+    btnAdmin.addEventListener("click", async () => {
+      if (isAdminLogged()) {
+        logoutAdmin();
+        location.reload();
+        return;
+      }
+
+      const user = prompt("Ingrese usuario administrador:");
+      if (!user) return;
+      const password = prompt("Ingrese contraseña:");
+      if (!password) return;
+
+      const exito = await loginAdmin(user, password);
+      if (exito) {
+        window.location.href = "formulario.html";
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    });
+  }
 });
 
+// Función para renderizar tarjetas de productos
 function renderProductos(lista) {
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
