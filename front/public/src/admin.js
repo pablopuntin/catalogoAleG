@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ✅ Agregar la sección derivada al FormData
-    formData.append("seccion", seccion);
+   formData.set("seccion", seccion); // ✅ reemplaza la clave si ya existe
 
     const url = idProducto
       ? `${apiBase}/productos/${idProducto}`
