@@ -73,6 +73,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const metodo = idProducto ? "PUT" : "POST";
 
     try {
+      const categoriaPorSubcategoria = {
+  calzas: "calzas",
+  biker: "calzas",
+  capri: "calzas",
+  short: "calzas",
+  remeras: "remeras",
+  musculosas: "remeras",
+  top: "remeras",
+  buzos: "buzos",
+  marroquineria: "marroquineria",
+  conjuntos: "conjuntos",
+};
+
+const subcategoria = formData.get("subcategoria")?.toLowerCase();
+const seccion = categoriaPorSubcategoria[subcategoria];
+
+if (!seccion) {
+  alert("No se pudo determinar la sección a partir de la subcategoría.");
+  return;
+}
+
+formData.append("seccion", seccion);
+
       const res = await fetch(url, {
         method: metodo,
         body: formData,
