@@ -47,71 +47,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ Submit para crear o actualizar producto
   form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const formData = new FormData(form);
+    const formData = new FormData(form);
 
-  // ✅ Primero: calcular `seccion` a partir de la subcategoría
-  const categoriaPorSubcategoria = {
-    calzas: "calzas",
-    biker: "calzas",
-    capri: "calzas",
-    short: "calzas",
-    remeras: "remeras",
-    musculosas: "remeras",
-    top: "remeras",
-    buzos: "buzos",
-    marroquineria: "marroquineria",
-    conjuntos: "conjuntos",
-  };
+    // ✅ Primero: calcular `seccion` a partir de la subcategoría
+    const categoriaPorSubcategoria = {
+      calzas: "calzas",
+      biker: "calzas",
+      capri: "calzas",
+      short: "calzas",
+      remeras: "remeras",
+      musculosas: "remeras",
+      top: "remeras",
+      buzos: "buzos",
+      marroquineria: "marroquineria",
+      conjuntos: "conjuntos",
+    };
 
-  const subcategoria = formData.get("subcategoria")?.toLowerCase();
-  const seccion = categoriaPorSubcategoria[subcategoria];
+    const subcategoria = formData.get("subcategoria")?.toLowerCase();
+    const seccion = categoriaPorSubcategoria[subcategoria];
 
-  if (!seccion) {
-    alert("No se pudo determinar la sección a partir de la subcategoría.");
-    return;
-  }
-
- 
-
-  // ✅ Y luego creamos el objeto data, usando el formData completo
-  const data = {
-    nombre: formData.get("nombre"),
-    descripcion: formData.get("descripcion"),
-    precio: parseFloat(formData.get("precio")),
-    stock: parseInt(formData.get("stock")),
-    disponible: formData.get("disponible")?.split(",").map((t) => t.trim()),
-    subcategoria: subcategoria,
-    seccion: seccion
-  };
-
-  // Esto es opcional si tu backend lo requiere, podés omitirlo si no lo usás
-  formData.append("data", JSON.stringify(data));
-
-  const url = idProducto
-    ? `${apiBase}/productos/${idProducto}`
-    : `${apiBase}/productos`;
-
-  const metodo = idProducto ? "PUT" : "POST";
-
-  try {
-    const res = await fetch(url, {
-      method: metodo,
-      body: formData,
-    });
-
-    const result = await res.json();
-
-    if (!res.ok) {
-      throw new Error(result.mensaje || "Error desconocido");
+    if (!seccion) {
+      alert("No se pudo determinar la sección a partir de la subcategoría.");
+      return;
     }
 
-    alert(`Producto ${idProducto ? "actualizado" : "creado"} correctamente`);
-    if (!idProducto) form.reset();
-  } catch (error) {
-    console.error("Error al guardar producto:", error);
-    alert("Error al guardar: " + error.message);
-  }
+    // ✅ Agregar la sección derivada al FormData
+    formData.append("seccion", seccion);
+
+    const url = idProducto
+      ? `${apiBase}/productos/${idProducto}`
+      : `${apiBase}/productos`;
+
+    const metodo = idProducto ? "PUT" : "POST";
+
+    try {
+      const res = await fetch(url, {
+        method: metodo,
+        body: formData,
+      });
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        throw new Error(result.mensaje || "Error desconocido");
+      }
+
+      alert(`Producto ${idProducto ? "actualizado" : "creado"} correctamente`);
+      if (!idProducto) form.reset();
+    } catch (error) {
+      console.error("Error al guardar producto:", error);
+      alert("Error al guardar: " + error.message);
+    }
+  });
 });
-})
