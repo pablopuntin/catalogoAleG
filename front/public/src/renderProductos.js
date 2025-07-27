@@ -123,20 +123,19 @@ function renderProductos(lista) {
     col.className = "col-12 col-sm-6 col-md-4 col-lg-3";
 
     const card = document.createElement("div");
-    card.className = "col-12 col-md-6 col-lg-3"; // Asegura la misma clase de columna
-card.innerHTML = `
-  <div class="card w-100 shadow-sm">
-    <img src="${prod.poster}" class="card-img-top" alt="Calzas" style="object-fit: cover; height: 55vh;" alt="${prod.nombre}" >
-    <div class="card-body">
-      <h5 class="card-title">${prod.nombre}</h5>
-      <p class="card-text">${prod.descripcion}</p>
-      <p class="fw-bold">$${prod.precio}</p>
-    </div>
-  </div>
-`;
+    card.className = "card h-100 shadow-sm";
+
+    card.innerHTML = `
+      <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; height: 250px;">
+      <div class="card-body">
+        <h5 class="card-title">${prod.nombre}</h5>
+        <p class="card-text">${prod.descripcion}</p>
+        <p class="fw-bold">$${prod.precio}</p>
+      </div>
+    `;
 
 
-    // Si está logueado el admin, agregamos botones CRUD
+     // Si está logueado el admin, agregamos botones CRUD
     if (isAdminLogged()) {
       const footer = document.createElement("div");
       footer.className = "card-footer d-flex justify-content-between";
@@ -144,31 +143,29 @@ card.innerHTML = `
       const btnEditar = document.createElement("button");
       btnEditar.className = "btn btn-sm btn-warning";
       btnEditar.textContent = "Editar";
-      // A futuro: conectar lógica de edición
 
-     const btnEliminar = document.createElement("button");
-btnEliminar.className = "btn btn-sm btn-danger";
-btnEliminar.textContent = "Eliminar";
+      const btnEliminar = document.createElement("button");
+      btnEliminar.className = "btn btn-sm btn-danger";
+      btnEliminar.textContent = "Eliminar";
 
-btnEliminar.addEventListener("click", async () => {
-  const confirmar = confirm(`¿Estás seguro de que querés eliminar "${prod.nombre}"?`);
-  if (!confirmar) return;
+      btnEliminar.addEventListener("click", async () => {
+        const confirmar = confirm(`¿Estás seguro de que querés eliminar "${prod.nombre}"?`);
+        if (!confirmar) return;
 
-  try {
-    const response = await fetch(`${apiBase}/productos/${prod._id}`, {
-      method: "DELETE"
-    });
+        try {
+          const response = await fetch(`${apiBase}/productos/${prod._id}`, {
+            method: "DELETE"
+          });
 
-    if (!response.ok) throw new Error("Error al eliminar producto");
+          if (!response.ok) throw new Error("Error al eliminar producto");
 
-    alert("Producto eliminado exitosamente");
-    location.reload();
-  } catch (error) {
-    console.error("Error al eliminar:", error);
-    alert("Ocurrió un error al intentar eliminar el producto.");
-  }
-});
-
+          alert("Producto eliminado exitosamente");
+          location.reload();
+        } catch (error) {
+          console.error("Error al eliminar:", error);
+          alert("Ocurrió un error al intentar eliminar el producto.");
+        }
+      });
 
       footer.appendChild(btnEditar);
       footer.appendChild(btnEliminar);
