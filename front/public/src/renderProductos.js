@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     : `${seccion.toUpperCase()}`;
 
   try {
-    let url = `${apiBase}/producto?seccion=${encodeURIComponent(seccion)}`;
+    let url = `${apiBase}/productos?seccion=${encodeURIComponent(seccion)}`;
     if (subcategoria) url += `&subcategoria=${encodeURIComponent(subcategoria)}`;
 
     const response = await fetch(url);
