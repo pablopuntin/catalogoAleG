@@ -8,20 +8,19 @@
 <body>
   <header id="navbar-container"></header>
 
-  <main>
-    <h2 id="titulo-seccion"></h2>
+  <main class="container mt-4">
+    <h1 id="titulo-seccion" class="mb-4 text-center text-capitalize">Cargando productos...</h1>
 
-    <section id="contenedor-productos" class="grid-productos">
-      <!-- Productos renderizados dinámicamente -->
-    </section>
+    <div id="contenedor-productos" class="row justify-content-center g-4">
+      <!-- Aquí van las tarjetas de productos -->
+    </div>
 
-    <div class="volver-container">
-      <button id="btn-volver">← Volver a la sección</button>
+    <div class="text-center mt-5">
+      <button id="btn-volver" class="btn btn-secondary">Volver al inicio</button>
     </div>
   </main>
 
- <script src="./env.js"></script>
-<script type="module" src="./scripts/renderProductos.js"></script>
-
+  <script src="./env.js"></script>
+  <script type="module" src="./scripts/renderProductos.js"></script>
 </body>
 </html>
