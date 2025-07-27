@@ -1,38 +1,42 @@
 // scripts/renderIndex.js
 import { renderNavbar } from "./navbar.js";
-renderNavbar();
-
-// Lista de subsecciones fijas según tu backend
-const subsecciones = [
-  { seccion: "calzas", subcategoria: "short" },
-  { seccion: "calzas", subcategoria: "biker" },
-  { seccion: "calzas", subcategoria: "capri" },
-  { seccion: "remeras", subcategoria: "top" },
-  { seccion: "remeras", subcategoria: "musculosas" },
-  { seccion: "remeras", subcategoria: "remeras" },
-  { seccion: "marroquineria", subcategoria: "mochilas" }
-];
+import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const contenedor = document.getElementById("categorias");
+  renderNavbar();
 
-  // Renderizar tarjetas dinámicas de subsecciones
-  subsecciones.forEach(({ seccion, subcategoria }) => {
-    const card = document.createElement("div");
-    card.className = "card-subseccion";
-    card.innerHTML = `
-      <h3>${subcategoria.toUpperCase()}</h3>
-      <p>${seccion}</p>
-    `;
+  // Activar botón Admin después de renderizar el navbar
+  const btnAdmin = document.getElementById("btn-admin");
+  if (btnAdmin) {
+    // Mostrar estado actual
+    if (isAdminLogged()) {
+      btnAdmin.textContent = "Logout";
+      btnAdmin.classList.remove("btn-outline-dark");
+      btnAdmin.classList.add("btn-danger");
+    }
 
-    card.addEventListener("click", () => {
-      window.location.href = `./productos.html?seccion=${encodeURIComponent(seccion)}&subcategoria=${encodeURIComponent(subcategoria)}`;
+    btnAdmin.addEventListener("click", async () => {
+      if (isAdminLogged()) {
+        logoutAdmin();
+        location.reload();
+        return;
+      }
+
+      const user = prompt("Ingrese usuario administrador:");
+      if (!user) return;
+      const password = prompt("Ingrese contraseña:");
+      if (!password) return;
+
+      const exito = await loginAdmin(user, password);
+      if (exito) {
+        window.location.href = "formulario.html";
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
     });
+  }
 
-    contenedor.appendChild(card);
-  });
-
-  // Navegación desde las tarjetas de sección principales (estáticas en el HTML)
+  // Navegación desde las tarjetas estáticas del index.html
   const botones = document.querySelectorAll(".btn-ver-catalogo");
   botones.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -40,4 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = `./productos.html?seccion=${encodeURIComponent(seccion)}`;
     });
   });
+
+  // Si querés subsecciones dinámicas aparte, se puede agregar en otro contenedor.
 });
