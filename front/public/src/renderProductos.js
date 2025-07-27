@@ -120,7 +120,8 @@ function renderProductos(lista) {
 
   lista.forEach((prod) => {
     const col = document.createElement("div");
-    col.className = "col-12 col-sm-6 col-md-4 col-xl-3";
+  col.className = "col-12 col-md-6 col-lg-4 col-xl-3";
+
 
     const card = document.createElement("div");
     card.className = "card h-100 shadow-sm";
