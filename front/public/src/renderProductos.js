@@ -126,7 +126,7 @@ function renderProductos(lista) {
     card.className = "col-12 col-md-6 col-lg-3"; // Asegura la misma clase de columna
 card.innerHTML = `
   <div class="card h-100 shadow-sm">
-    <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; height: 55vh;">
+    <img src="${prod.poster}" class="card-img-top" alt="Calzas" style="object-fit: cover; height: 55vh;" alt="${prod.nombre}" >
     <div class="card-body">
       <h5 class="card-title">${prod.nombre}</h5>
       <p class="card-text">${prod.descripcion}</p>
