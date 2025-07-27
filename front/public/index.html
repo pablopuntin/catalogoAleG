@@ -134,18 +134,6 @@
   </div>
 </section>
 
-<!-- Contenedor dinámico de subcategorías -->
-<div id="contenedor-subcategorias" class="my-4 d-none text-center"></div>
-
-<!-- Contenedor dinámico de productos -->
-<section class="container my-5">
-  <div id="boton-volver" class="text-center mb-4 d-none">
-    <button class="btn btn-secondary">← Volver a categorías</button>
-  </div>
-
-  <div id="contenedor-productos" class="row d-none"></div>
-</section>
-
     </main>
 
 
@@ -208,11 +196,11 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <script src="./env.js"></script>
-    <!--Script para import el modulo index.js que llama a renderCard-->
-    <script type="module" src="./src/index.js"></script>
+   
 
-    
+    <script src="./env.js"></script>
+<script type="module" src="./src/renderIndex.js"></script> <!-- (O ahora, renderIndex.js si migrás a modular) -->
+
   
 
 </body>
