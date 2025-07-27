@@ -73,8 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // ✅ Ahora sí agregamos seccion al formData
-  formData.append("seccion", seccion);
+ 
 
   // ✅ Y luego creamos el objeto data, usando el formData completo
   const data = {
