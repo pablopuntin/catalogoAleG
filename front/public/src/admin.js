@@ -2,6 +2,10 @@ import { isAdminLogged, logoutAdmin } from "./auth.js";
 
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
+
+if (!isAdminLogged()) {
+  window.location.href = "login.html";
+}
 document.addEventListener("DOMContentLoaded", () => {
   // ✅ Verificación de admin
   if (!isAdminLogged()) {
