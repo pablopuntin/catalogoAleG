@@ -1,10 +1,10 @@
 function renderSubcategorias(seccion) {
 
   const imagenes = {
-  calza: "asset/img/subcalza.jpeg",
-  short: "asset/img/subshort.jpg",
-  biker: "asset/img/subbiker.jpg",
-  capri: "asset/img/subcapri.jpg"
+  calza: "../asset/img/subcalza.jpeg",
+  short: "../asset/img/subshort.jpg",
+  biker: "../asset/img/subbiker.jpg",
+  capri: "../asset/img/subcapri.jpg"
 };
   const contenedor = document.getElementById("contenedor-productos");
   contenedor.innerHTML = "";
