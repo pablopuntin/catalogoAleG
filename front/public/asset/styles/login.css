@@ -1,7 +1,7 @@
 /* login.css */
 
 body {
-  background-color: #dcb6ea; /* fondo suave, como el tuyo */
+  background-color: #f4f4f4; /* fondo suave, como el tuyo */
   margin: 0;
   padding: 2rem;
   font-family: 'Segoe UI', sans-serif;
@@ -11,7 +11,7 @@ body {
 
 .contenedor-login {
   margin-top: 5rem; /* separa del top */
-  background-color: #f4b8b8;
+  background-color: #504e4e;
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
