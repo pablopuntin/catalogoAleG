@@ -6,7 +6,7 @@ renderNavbar();
 const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 
 const seccionesConSubcategorias = {
-  calzas: ["calzas, short", "biker", "capri"],
+  calzas: ["calzas", "short", "biker", "capri"],
   remeras: ["top", "musculosas", "remeras"]
 };
 
