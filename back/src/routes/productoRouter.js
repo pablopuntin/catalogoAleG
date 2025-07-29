@@ -1,18 +1,23 @@
-const express = require("express");
+//mejorado con autentificacion y token
+const express = require('express');
 const router = express.Router();
-const productoController = require("../controllers/productoController");
-const upload = require("../middleware/upload");
+const {
+obtenerProductos,
+  obtenerProductoPorId,
+  crearProducto,
+  actualizarProducto,
+  eliminarProducto
+} = require('../controllers/productoController');
 
-router.get("/", productoController.obtenerProductos);
+const authMiddleware = require('../middleware/authMiddleware');
+const upload = require('../middleware/upload'); // o como se llame tu config de multer+cloudinary
 
-// ✅ NUEVA: obtener un solo producto por ID
-router.get("/:id", productoController.obtenerProductoPorId);
+// Pública
+router.get('/', obtenerProductos);
 
-// usamos multer para recibir la imagen
-router.post("/", upload.single("poster"), productoController.crearProducto);
-
-router.put("/:id", upload.single("poster"), productoController.actualizarProducto);
-
-router.delete("/:id", productoController.eliminarProducto);
+// Protegidas
+router.post('/', authMiddleware, upload.single('poster'), crearProducto);
+router.delete('/:id', authMiddleware, eliminarProducto);
+router.put('/:id', authMiddleware, upload.single('poster'), actualizarProducto); // si usás imagen nueva
 
 module.exports = router;

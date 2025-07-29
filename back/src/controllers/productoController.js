@@ -2,14 +2,24 @@ const Producto = require("../models/Producto");
 const path = require("path");
 const fs = require("fs");
 
-// ✅ Obtener todos los productos
+// ✅ Obtener todos los productos y filtrar por seccion
+// 
+
+
+// producto.controller.js
+
 const obtenerProductos = async (req, res) => {
+  const { seccion, subcategoria } = req.query;
+   console.log("📥 Query recibida:", req.query);
+  const filtro = {};
+  if (seccion) filtro.seccion = seccion;
+  if (subcategoria) filtro.subcategoria = subcategoria;
+
   try {
-    const productos = await Producto.find();
+    const productos = await Producto.find(filtro);
     res.json(productos);
   } catch (error) {
-    console.error("Error al obtener productos", error.message);
-    res.status(500).json({ mensaje: "Error al obtener productos", error: error.message });
+    res.status(500).json({ message: "Error al obtener productos" });
   }
 };
 
@@ -26,14 +36,27 @@ const obtenerProductoPorId = async (req, res) => {
   }
 };
 
-// ✅ Crear producto
+// // ✅ Crear producto
+
+
 const crearProducto = async (req, res) => {
+  console.log("🧾 req.body:", req.body);
+console.log("🖼️ req.file:", req.file);
+
   try {
-    const { nombre, descripcion, precio, stock, disponible, seccion } = req.body;
+    const {
+      nombre,
+      descripcion,
+      precio,
+      stock,
+      disponible,
+      subcategoria, // 👈 lo agregás acá
+      seccion,
+    } = req.body;
 
     // Validación básica
     if (!req.file || !req.file.path) {
-      return res.status(400).json({ error: "Imagen (poster) obligatoria" });
+      return res.status(400).json({ mensaje: "imagen requerida" });
     }
 
     const nuevoProducto = new Producto({
@@ -41,18 +64,25 @@ const crearProducto = async (req, res) => {
       descripcion,
       precio: Number(precio),
       stock: Number(stock),
-      disponible: disponible.split(',').map(t => t.trim()),
+      disponible: disponible.split(",").map((t) => t.trim()),
+      subcategoria, // 👈 y lo usás acá también
       seccion,
       poster: req.file.path, // ruta pública de Cloudinary
     });
 
     await nuevoProducto.save();
-    res.status(201).json(nuevoProducto);
+   res.status(201).json({ mensaje: "Producto creado", producto: nuevoProducto });
   } catch (error) {
-    console.error("Error al crear producto:", error);
-    res.status(500).json({ error: "Error al crear producto", detalles: error.message });
+    console.error("❌ Error en crearProducto:", error);
+    res.status(500).json({
+      mensaje: "Error al guardar producto",
+      error: error.message,
+    });
   }
 };
+
+
+
 
 // ✅ Actualizar producto
 const actualizarProducto = async (req, res) => {
