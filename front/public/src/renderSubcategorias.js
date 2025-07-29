@@ -18,9 +18,9 @@ function renderSubcategorias(seccion) {
     const card = document.createElement("div");
     card.className = "card shadow-sm h-100";
     card.innerHTML = `
+    
+    <div class="card-body text-center">
     <img src="${imagenes[sub] || 'default.jpg'}" class="card-img-top" alt="${sub}" style="height: 200px; object-fit: cover;">
-
-      <div class="card-body text-center">
         <h5 class="card-title text-capitalize">${sub}</h5>
         <button class="btn btn-primary">Ver productos</button>
       </div>
