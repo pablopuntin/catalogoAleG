@@ -25,7 +25,29 @@ footer{
   color: black;
   font-size: 1.5em;
  }
+/*clases para el modal*/
+  .oculto {
+  display: none !important;
+}
 
- .oculto{
-  display: none;
- }
+.mi-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30vw;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(160, 155, 155, 0.6);
+  z-index: 1050;
+}
+
+.mi-modal-content {
+  background: #904b4b;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}

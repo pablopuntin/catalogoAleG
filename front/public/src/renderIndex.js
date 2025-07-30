@@ -2,8 +2,14 @@
 import { renderNavbar } from "./navbar.js";
 import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
 
+
+console.log("RenderNavbar:", renderNavbar);  // Aquí ya deberías verlo como función
+
+console.log("typeof renderNavbar", typeof renderNavbar);
+
 document.addEventListener("DOMContentLoaded", () => {
   renderNavbar();
+ 
 
   // Activar botón Admin después de renderizar el navbar
   const btnAdmin = document.getElementById("btn-admin");
