@@ -6,6 +6,6 @@ const logoutBtn = document.getElementById("logoutBtn");
 if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
     logoutAdmin();
-    window.location.href = "login.html";
+   window.location.href = "index.html";
   });
 }
