@@ -3,10 +3,11 @@ const apiBase = (window.env && window.env.API_URL) || "http://localhost:3000";
 export async function loginAdmin(user, password) {
   try {
     const res = await fetch(`${apiBase}/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username: user, password }),  // 👈 CAMBIO CLAVE
-    });
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ username: user, password }),
+});
+
 
     if (!res.ok) return false;
 

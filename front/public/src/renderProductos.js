@@ -1,4 +1,3 @@
-// scripts/renderProductos.js
 import { renderNavbar } from "./navbar.js";
 import { isAdminLogged } from "./auth.js";
 
@@ -25,14 +24,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Mostrar subcategorías si corresponde
   if (seccionesConSubcategorias[seccion] && !subcategoria) {
     titulo.textContent = seccion.toUpperCase();
     renderSubcategorias(seccion);
     return;
   }
 
-  // Título completo
   titulo.textContent = subcategoria
     ? `${seccion.toUpperCase()} - ${subcategoria.toUpperCase()}`
     : `${seccion.toUpperCase()}`;
@@ -52,11 +49,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   const btnVolver = document.getElementById("btn-volver");
-  if (btnVolver) {
-    btnVolver.addEventListener("click", () => {
-      window.location.href = "index.html";
-    });
-  }
+  btnVolver?.addEventListener("click", () => {
+    window.location.href = "index.html";
+  });
 });
 
 function renderSubcategorias(seccion) {
@@ -112,14 +107,9 @@ function renderProductos(lista) {
       </div>
     `;
 
-    // Botones de admin (si está logueado)
     if (isAdminLogged()) {
       const footer = document.createElement("div");
-      footer.className = "card-footer d-flex justify-content-between";
-
-      const btnEditar = document.createElement("button");
-      btnEditar.className = "btn btn-sm btn-warning";
-      btnEditar.textContent = "Editar";
+      footer.className = "card-footer d-flex justify-content-end";
 
       const btnEliminar = document.createElement("button");
       btnEliminar.className = "btn btn-sm btn-danger";
@@ -129,9 +119,14 @@ function renderProductos(lista) {
         const confirmar = confirm(`¿Estás seguro de que querés eliminar "${prod.nombre}"?`);
         if (!confirmar) return;
 
+        const token = localStorage.getItem("adminToken");
+
         try {
           const response = await fetch(`${apiBase}/productos/${prod._id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
           });
 
           if (!response.ok) throw new Error("Error al eliminar producto");
@@ -144,7 +139,6 @@ function renderProductos(lista) {
         }
       });
 
-      footer.appendChild(btnEditar);
       footer.appendChild(btnEliminar);
       card.appendChild(footer);
     }
