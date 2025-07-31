@@ -1,5 +1,3 @@
-
-
 import { isAdminLogged, loginAdmin, logoutAdmin } from "./auth.js";
 
 export function renderNavbar() {
@@ -19,7 +17,7 @@ export function renderNavbar() {
     </div>`;
   document.body.insertAdjacentHTML('beforeend', modal);
 
-  // Verificar si está logueado
+  // Verificar si el admin ya está logueado
   const logged = isAdminLogged();
 
   // Inyectar navbar
@@ -40,7 +38,7 @@ export function renderNavbar() {
             <li class="nav-item"><a class="nav-link" href="#" data-seccion="marroquineria">Marroquinería</a></li>
             <li class="nav-item"><a class="nav-link" href="#" data-seccion="conjuntos">Conjuntos</a></li>
           </ul>
-          <button id="btn-admin" class="btn btn-outline-dark ms-3">
+          <button id="btn-admin" class="btn ${logged ? "btn-danger" : "btn-outline-dark"} ms-3">
             ${logged ? "Cerrar sesión" : "Admin"}
           </button>
         </div>
@@ -48,12 +46,12 @@ export function renderNavbar() {
     </nav>
   `;
 
-  // Lógica del botón Admin
+  // Botón Admin: abrir modal o cerrar sesión
   const btnAdmin = document.getElementById("btn-admin");
   if (logged) {
     btnAdmin.addEventListener("click", () => {
       logoutAdmin();
-      window.location.href = "index.html";
+      location.reload();
     });
   } else {
     btnAdmin.addEventListener("click", () => {
@@ -61,27 +59,13 @@ export function renderNavbar() {
     });
   }
 
-  // Cerrar modal
+  // Botón cerrar modal
   const btnCerrarModal = document.getElementById("btn-close-modal");
   btnCerrarModal?.addEventListener("click", () => {
     document.getElementById("login-modal").classList.add("oculto");
   });
 
-  // Navegación por secciones
-  const navLinks = contenedor.querySelectorAll(".nav-link[data-seccion]");
-  navLinks.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const seccion = link.getAttribute("data-seccion");
-      window.location.href = `productos.html?seccion=${seccion}`;
-    });
-  });
-}
-
-
-// ... (todo el renderNavbar actual) ...
-
-  // Login desde modal
+  // Botón enviar login
   const btnSubmitLogin = document.getElementById("btn-submit-login");
   btnSubmitLogin?.addEventListener("click", async () => {
     const user = document.getElementById("admin-user").value.trim();
@@ -94,53 +78,19 @@ export function renderNavbar() {
 
     const exito = await loginAdmin(user, pass);
     if (exito) {
-      window.location.href = "formulario.html";
+      location.href = "formulario.html";
     } else {
       alert("Usuario o contraseña incorrectos");
     }
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//  contenedor.innerHTML = `
-//     <nav class="navbar navbar-expand-lg custom-navbar shadow-sm sticky-top">
-//       <div class="container">
-//         <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
-//           <i class="bi bi-shop me-2"></i>Mi Catálogo</a>
-//         <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-//           <span class="navbar-toggler-icon"></span>
-//         </button>
-//         <div class="collapse navbar-collapse" id="navbarNav">
-//           <ul class="navbar-nav ms-auto align-items-center">
-//             <li class="nav-item"><a class="nav-link" href="#" data-seccion="inicio">Inicio</a></li>
-//             <li class="nav-item"><a class="nav-link" href="#" data-seccion="calzas">Calzas</a></li>
-//             <li class="nav-item"><a class="nav-link" href="#" data-seccion="remeras">Remeras</a></li>
-//             <li class="nav-item"><a class="nav-link" href="#" data-seccion="buzos">Buzos</a></li>
-//             <li class="nav-item"><a class="nav-link" href="#" data-seccion="marroquineria">Marroquinería</a></li>
-//             <li class="nav-item"><a class="nav-link" href="#" data-seccion="conjuntos">Conjuntos</a></li>
-//           </ul>
-//           <button id="btn-admin" class="btn btn-outline-dark ms-3">
-//             ${logged ? "Cerrar sesión" : "Admin"}
-//           </button>
-//         </div>
-//       </div>
-//     </nav>`;
+  // Navegación por secciones desde el navbar
+  const navLinks = contenedor.querySelectorAll(".nav-link[data-seccion]");
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const seccion = link.getAttribute("data-seccion");
+      window.location.href = `productos.html?seccion=${seccion}`;
+    });
+  });
+}
