@@ -1,3 +1,4 @@
+// scripts/navbar.js
 import { isAdminLogged, loginAdmin, logoutAdmin } from "./auth.js";
 
 export function renderNavbar() {
@@ -17,7 +18,6 @@ export function renderNavbar() {
     </div>`;
   document.body.insertAdjacentHTML('beforeend', modal);
 
-  // Verificar si el admin ya está logueado
   const logged = isAdminLogged();
 
   // Inyectar navbar
@@ -37,8 +37,15 @@ export function renderNavbar() {
             <li class="nav-item"><a class="nav-link" href="#" data-seccion="buzos">Buzos</a></li>
             <li class="nav-item"><a class="nav-link" href="#" data-seccion="marroquineria">Marroquinería</a></li>
             <li class="nav-item"><a class="nav-link" href="#" data-seccion="conjuntos">Conjuntos</a></li>
+            ${
+              logged
+                ? `<li class="nav-item">
+                    <a class="btn btn-success ms-3" href="formulario.html">Crear Producto</a>
+                  </li>`
+                : ""
+            }
           </ul>
-          <button id="btn-admin" class="btn ${logged ? "btn-danger" : "btn-outline-dark"} ms-3">
+          <button id="btn-admin" class="btn btn-outline-dark ms-3">
             ${logged ? "Cerrar sesión" : "Admin"}
           </button>
         </div>
@@ -59,13 +66,13 @@ export function renderNavbar() {
     });
   }
 
-  // Botón cerrar modal
+  // Cerrar modal
   const btnCerrarModal = document.getElementById("btn-close-modal");
   btnCerrarModal?.addEventListener("click", () => {
     document.getElementById("login-modal").classList.add("oculto");
   });
 
-  // Botón enviar login
+  // Botón de login dentro del modal
   const btnSubmitLogin = document.getElementById("btn-submit-login");
   btnSubmitLogin?.addEventListener("click", async () => {
     const user = document.getElementById("admin-user").value.trim();
@@ -78,13 +85,13 @@ export function renderNavbar() {
 
     const exito = await loginAdmin(user, pass);
     if (exito) {
-      location.href = "formulario.html";
+      window.location.href = "formulario.html";
     } else {
       alert("Usuario o contraseña incorrectos");
     }
   });
 
-  // Navegación por secciones desde el navbar
+  // Navegación por secciones
   const navLinks = contenedor.querySelectorAll(".nav-link[data-seccion]");
   navLinks.forEach((link) => {
     link.addEventListener("click", (e) => {
