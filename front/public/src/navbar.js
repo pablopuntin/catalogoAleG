@@ -1,5 +1,6 @@
 
-import { isAdminLogged, logoutAdmin } from "./auth.js";
+
+import { isAdminLogged, loginAdmin, logoutAdmin } from "./auth.js";
 
 export function renderNavbar() {
   const contenedor = document.getElementById("navbar-container");
@@ -76,6 +77,28 @@ export function renderNavbar() {
     });
   });
 }
+
+
+// ... (todo el renderNavbar actual) ...
+
+  // Login desde modal
+  const btnSubmitLogin = document.getElementById("btn-submit-login");
+  btnSubmitLogin?.addEventListener("click", async () => {
+    const user = document.getElementById("admin-user").value.trim();
+    const pass = document.getElementById("admin-pass").value.trim();
+
+    if (!user || !pass) {
+      alert("Debe completar usuario y contraseña");
+      return;
+    }
+
+    const exito = await loginAdmin(user, pass);
+    if (exito) {
+      window.location.href = "formulario.html";
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
+  });
 
 
 

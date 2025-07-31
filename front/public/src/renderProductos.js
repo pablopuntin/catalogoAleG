@@ -1,5 +1,6 @@
+// scripts/renderProductos.js
 import { renderNavbar } from "./navbar.js";
-import { loginAdmin, isAdminLogged, logoutAdmin } from "./auth.js";
+import { isAdminLogged } from "./auth.js";
 
 renderNavbar();
 
@@ -24,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     return;
   }
 
-  // Si tiene subcategorías pero no se eligió una: mostrar tarjetas de subcategoría
+  // Mostrar subcategorías si corresponde
   if (seccionesConSubcategorias[seccion] && !subcategoria) {
     titulo.textContent = seccion.toUpperCase();
     renderSubcategorias(seccion);
@@ -54,29 +55,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (btnVolver) {
     btnVolver.addEventListener("click", () => {
       window.location.href = "index.html";
-    });
-  }
-
-  const btnAdmin = document.getElementById("btn-admin");
-  if (btnAdmin) {
-    btnAdmin.addEventListener("click", async () => {
-      if (isAdminLogged()) {
-        logoutAdmin();
-        location.reload();
-        return;
-      }
-
-      const user = prompt("Ingrese usuario administrador:");
-      if (!user) return;
-      const password = prompt("Ingrese contraseña:");
-      if (!password) return;
-
-      const exito = await loginAdmin(user, password);
-      if (exito) {
-        window.location.href = "formulario.html";
-      } else {
-        alert("Usuario o contraseña incorrectos");
-      }
     });
   }
 });
@@ -120,14 +98,13 @@ function renderProductos(lista) {
 
   lista.forEach((prod) => {
     const col = document.createElement("div");
-  col.className = "col-xs-11  col-lg-4 col-xl-3";
-
+    col.className = "col-xs-11 col-lg-4 col-xl-3";
 
     const card = document.createElement("div");
     card.className = "card h-100 shadow-sm";
 
     card.innerHTML = `
-      <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; w-100 height: 75vh;">
+      <img src="${prod.poster}" class="card-img-top" alt="${prod.nombre}" style="object-fit: cover; width: 100%; height: 75vh;">
       <div class="card-body">
         <h5 class="card-title">${prod.nombre}</h5>
         <p class="card-text">${prod.descripcion}</p>
@@ -135,8 +112,7 @@ function renderProductos(lista) {
       </div>
     `;
 
-
-     // Si está logueado el admin, agregamos botones CRUD
+    // Botones de admin (si está logueado)
     if (isAdminLogged()) {
       const footer = document.createElement("div");
       footer.className = "card-footer d-flex justify-content-between";
