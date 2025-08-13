@@ -2,7 +2,9 @@
  /*css para la pagina*/
  
 body, h1, p{
-  color: antiquewhite;
+  color: rgb(58, 58, 58);
+  font-size: 1.6em
+  
 }
 .navbar{
   background-color: rgb(87, 68, 68);
