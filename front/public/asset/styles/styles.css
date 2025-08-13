@@ -9,14 +9,29 @@ body, h1, p{
 .navbar{
   background-color: rgb(87, 68, 68);
 }
-footer{
-    background-color: rgb(87, 68, 68);
-}
-
  .nav-link{
   font-size: 1.4em;
   color: antiquewhite;
  }
+
+ .float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px; /* distancia desde abajo */
+  right: 40px;  /* distancia desde la derecha */
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+}
+
+.my-float {
+  margin-top: 16px;
+}
 
  .dev{
   font-size: 1.3em;
@@ -52,4 +67,27 @@ footer{
   max-width: 400px;
   width: 90%;
   box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+
+footer.custom-footer {
+  background-color: rgb(87, 68, 68);
+}
+
+footer.custom-footer a {
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer.custom-footer a:hover {
+  color: #f8d7da;
+}
+
+/* Texto de copyright más pequeño */
+footer.custom-footer small {
+  font-size: 0.8rem;
+}
+/* Texto de copyright más pequeño */
+footer.custom-footer p {
+  font-size: 1.8rem;
 }
